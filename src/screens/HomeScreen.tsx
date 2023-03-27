@@ -1,12 +1,15 @@
 import React from 'react'
+import MainLayout from '../layouts/MainLayout'
 import tw from '../styles/tailwind'
 import { View, Text } from 'react-native'
 
-const HomeScreen = () => {
+const HomeScreen = (): JSX.Element => {
   return (
-    <View style={tw`flex-1 flex-row items-center justify-center bg-olive-light`}>
-      <Text style={tw`font-poppins text-sm`}>Farm Friend (Home Screen)</Text>
-    </View>
+    <MainLayout>
+      <View style={tw`flex-1 flex-col items-center justify-center w-full`}>
+        <Text style={tw`font-poppins text-xl`}>This is Home Page</Text>
+      </View>
+    </MainLayout>
   )
 }
 
