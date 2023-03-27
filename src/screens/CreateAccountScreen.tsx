@@ -13,7 +13,6 @@ const CreateAccountScreen = (): JSX.Element => {
     accountType,
     firstName,
     lastName,
-    category,
     address,
     mobileNo,
     email,
@@ -23,7 +22,6 @@ const CreateAccountScreen = (): JSX.Element => {
     setAccountType,
     setFirstName,
     setLastName,
-    setCategory,
     setAddress,
     setMobileNo,
     setEmail,
@@ -43,7 +41,6 @@ const CreateAccountScreen = (): JSX.Element => {
       accountType,
       firstName,
       lastName,
-      category,
       address,
       mobileNo,
       email,
@@ -90,14 +87,6 @@ const CreateAccountScreen = (): JSX.Element => {
             placeholder="Last name"
             value={lastName}
             onChangeText={(value: string) => setLastName(value)}
-          />
-        </View>
-        <View style={tw`flex-col w-full my-2`}>
-          <TextInput
-            style={tw`font-poppins text-sm text-olive border-b border-olive`}
-            placeholder="Category"
-            value={category}
-            onChangeText={(value: string) => setCategory(value)}
           />
         </View>
         <View style={tw`flex-col w-full my-2`}>
