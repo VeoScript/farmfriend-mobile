@@ -7,7 +7,7 @@ export const links = [
   {
     'name': 'Suggested Crops to Plant',
     'icon': 'compass',
-    'route': 'SuggestedCropsScreen'
+    'route': 'SuggestedCropsToPlantScreen'
   },
   {
     'name': 'Search Programs',
@@ -17,7 +17,7 @@ export const links = [
   {
     'name': 'Add Programs',
     'icon': 'plus',
-    'route': 'AddPrograramsScreen'
+    'route': 'AddProgramsScreen'
   },
   {
     'name': 'User Farmers',
@@ -27,7 +27,7 @@ export const links = [
   {
     'name': 'User LGU/NGO',
     'icon': 'users',
-    'route': 'UserLguNgoScreens'
+    'route': 'UserLguNgoScreen'
   },
 ]
 
@@ -50,6 +50,6 @@ export const settingsLinks = [
   {
     'name': 'Edit Account',
     'icon': 'pencil',
-    'route': 'EditAccountScreens'
+    'route': 'EditAccountScreen'
   },
 ]
