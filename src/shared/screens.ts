@@ -16,6 +16,8 @@ import NotificationsScreen from '../screens/SettingsScreens/NotificationsScreen'
 import ViewRatesScreen from '../screens/SettingsScreens/ViewRatesScreen'
 import ViewReportsScreen from '../screens/SettingsScreens/ViewReportsScreen'
 import EditAccountScreen from '../screens/SettingsScreens/EditAccountScreen'
+import RateAppScreen from '../screens/SettingsScreens/RateAppScreen'
+import ReportHereScreen from '../screens/SettingsScreens/ReportHereScreen'
 
 export {
   LoginScreen,
@@ -30,5 +32,7 @@ export {
   NotificationsScreen,
   ViewRatesScreen,
   ViewReportsScreen,
-  EditAccountScreen
+  EditAccountScreen,
+  RateAppScreen,
+  ReportHereScreen
 }
