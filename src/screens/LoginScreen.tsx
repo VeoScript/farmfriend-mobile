@@ -15,6 +15,7 @@ const LoginScreen = (): JSX.Element => {
       email,
       password
     })
+    useNavigate('HomeScreen')
     setDefault()
   }
 
