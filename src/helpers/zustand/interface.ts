@@ -16,7 +16,6 @@ export interface CreateAccountStoreProps {
   accountType: string
   firstName: string
   lastName: string
-  category: string
   address: string
   mobileNo: string
   email: string
@@ -26,7 +25,6 @@ export interface CreateAccountStoreProps {
   setAccountType: (value: string) => void
   setFirstName: (value: string) => void
   setLastName: (value: string) => void
-  setCategory: (value: string) => void
   setAddress: (value: string) => void
   setMobileNo: (value: string) => void
   setEmail: (value: string) => void
