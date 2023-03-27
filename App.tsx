@@ -31,6 +31,8 @@ const App = (): JSX.Element => {
         <Stack.Screen name="ViewRatesScreen" component={screen.ViewRatesScreen} />
         <Stack.Screen name="ViewReportsScreen" component={screen.ViewReportsScreen} />
         <Stack.Screen name="EditAccountScreen" component={screen.EditAccountScreen} />
+        <Stack.Screen name="RateAppScreen" component={screen.RateAppScreen} />
+        <Stack.Screen name="ReportHereScreen" component={screen.ReportHereScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

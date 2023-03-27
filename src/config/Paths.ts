@@ -48,6 +48,16 @@ export const settingsLinks = [
     'route': 'ViewReportsScreen'
   },
   {
+    'name': 'Rate App',
+    'icon': 'star',
+    'route': 'RateAppScreen'
+  },
+  {
+    'name': 'Report Here',
+    'icon': 'list-unordered',
+    'route': 'ReportHereScreen'
+  },
+  {
     'name': 'Edit Account',
     'icon': 'pencil',
     'route': 'EditAccountScreen'
