@@ -6,8 +6,8 @@ module.exports = {
       colors: {
         "olive-dark": "#010101",
         "olive": "#425951",
-        "olive-light": "#F3FADB",
-        "olive-leaf": "#DEECB9"
+        "olive-light": "#8EB6AD",
+        "olive-semi-light": "#579F93"
       },
       fontFamily: {
         "poppins": ['Poppins-Regular'],
@@ -20,8 +20,8 @@ module.exports = {
   // plugins: [
   //   plugin(({ addUtilities }) => {
   //     addUtilities({
-  //       "paragraph": {
-  //         fontFamily: 'Poppins-Regular',
+  //       "backgroundImage": {
+  //         backgroundImage: 'Poppins-Regular',
   //       },
   //     });
   //   }),
