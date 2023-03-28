@@ -4,6 +4,7 @@ import tw from '../styles/tailwind'
 import { OcticonIcon } from '../utils/Icons'
 import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import { useLogoutMutation } from '../helpers/tanstack/mutations/auth'
+import { editAccountStore } from '../helpers/zustand/store'
 
 interface IProps {
   title: string
@@ -13,11 +14,15 @@ type TopBarProps = (props: IProps) => JSX.Element
 
 const TopBar: TopBarProps = ({ title }) => {
 
+  const { setDefaultAccountInfo, setDefaultChangePassword } = editAccountStore()
+
   const [settingsModalVisible, setSettingsModalVisible] = React.useState<boolean>(false)
 
   const logoutMutation = useLogoutMutation()
 
   const handleLogout = async () => {
+    setDefaultAccountInfo()
+    setDefaultChangePassword()
     await logoutMutation.mutateAsync()
   }
 
