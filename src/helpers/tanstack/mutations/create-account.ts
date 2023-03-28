@@ -15,7 +15,7 @@ export const useCreateAccountMutation = () => {
     }),
     {
       onError: (error: any) => {
-        console.error(error.response.data)
+        console.error('ERROR CREATE ACCOUNT', error.response.data)
       },
       onSuccess: () => {
         queryClient.invalidateQueries(['user'])

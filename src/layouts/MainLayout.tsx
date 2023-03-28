@@ -19,7 +19,7 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
         style={tw`relative flex-1 flex-col items-start w-full`}
       >
         <TopBar title={title} />
-        <ScrollView style={tw`flex-1 w-full`}>
+        <ScrollView style={tw`flex-1 w-full`} keyboardShouldPersistTaps="always">
           {children}
         </ScrollView>
       </ImageBackground>

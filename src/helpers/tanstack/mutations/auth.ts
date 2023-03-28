@@ -12,7 +12,7 @@ export const useLoginMutation = () => {
     }),
     {
       onError: (error: any) => {
-        console.error(error.response.data)
+        console.error('ERROR LOGIN', error.response.data)
       },
       onSuccess: async (data) => {
         const cookies: any = data.headers['set-cookie']
@@ -30,7 +30,7 @@ export const useLogoutMutation = () => {
     api.post('/api/logout'),
     {
       onError: (error: any) => {
-        console.error(error.response.data)
+        console.error('ERROR LOGOUT', error.response.data)
       },
       onSuccess: async () => {
         await AsyncStorage.setItem('COOKIES', '')

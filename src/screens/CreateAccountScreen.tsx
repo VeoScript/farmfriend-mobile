@@ -229,7 +229,7 @@ const CreateAccountScreen = (): JSX.Element => {
           style={tw`flex-row items-center justify-center w-full my-2 px-2 py-3 rounded-full bg-olive-dark ${isLoading ? 'opacity-50' : 'opacity-100'}`}
           onPress={handleCreateAccount}
         >
-          <Text style={tw`font-poppins text-sm text-white`}>Create</Text>
+          <Text style={tw`font-poppins text-sm text-white`}>{ isLoading ? 'Creating...' : 'Create' }</Text>
         </TouchableOpacity>
       </View>
       <View style={tw`flex-col items-center w-full my-3`}>
