@@ -45,7 +45,10 @@ const SettingsModal: SettingsProps = ({ modalVisible, setModalVisible }) => {
               key={i}
               activeOpacity={0.5}
               style={tw`flex-row items-center justify-start w-full border-t border-olive-semi-light p-3`}
-              onPress={() => useNavigate(setting.route)}
+              onPress={() => {
+                setModalVisible(false)
+                useNavigate(setting.route)
+              }}
             >
               <OcticonIcon size={20} name={setting.icon} color="#333333" />
               <Text style={tw`ml-2 font-poppins text-sm text-olive`}>{ setting.name }</Text>
