@@ -1,5 +1,6 @@
 import React from 'react'
 import * as screen from './src/shared/screens'
+import LoadingScreen from './src/components/SplashScreens/LoadingScreen'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { StatusBar } from 'react-native'
@@ -25,9 +26,7 @@ const App = (): JSX.Element => {
 
   const checkOnline = useCheckOnline()
 
-  if (checkOnline !== null && !checkOnline) {
-    console.log('You are offline')
-  } 
+  if (checkOnline !== null && !checkOnline) return <LoadingScreen />
 
   return (
     <QueryClientProvider client={queryClient}>
