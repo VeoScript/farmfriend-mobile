@@ -1,22 +1,50 @@
 import React from 'react'
 import AuthLayout from '../layouts/AuthLayout'
 import tw from '../styles/tailwind'
+import { Toast } from '../utils/Toast'
 import { BackHandler, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { useNavigate } from '../config/RootNavigation'
 import { useBackHandler } from '../helpers/hooks/useBackHandler'
 import { loginStore } from '../helpers/zustand/store'
+import { useLoginMutation } from '../helpers/tanstack/mutations/auth'
 
 const LoginScreen = (): JSX.Element => {
 
-  const { email, password, setEmail, setPassword, setDefault } = loginStore()
+  const {
+    isLoading,
+    email,
+    password,
+    email_error,
+    password_error,
+    setEmail,
+    setPassword,
+    setEmailError,
+    setPasswordError,
+    setIsLoading,
+    setDefault
+  } = loginStore()
+
+  const loginMutation = useLoginMutation()
 
   const handleLogin = async () => {
-    console.log('formData', {
+    if (email === '') return setEmailError('Email is required')
+    if (password === '') return setPasswordError('Password is required')
+
+    setIsLoading(true)
+
+    await loginMutation.mutateAsync({
       email,
       password
+    },
+    {
+      onError: (error: any) => {
+        Toast(`${error.response?.data?.message}`)
+        setIsLoading(false)
+      },
+      onSuccess: () => {
+        setDefault()
+      }
     })
-    useNavigate('HomeScreen')
-    setDefault()
   }
 
   // nig back sa app, since gikan sija sa login screen dapat ma close na ang app
@@ -33,8 +61,12 @@ const LoginScreen = (): JSX.Element => {
             style={tw`font-poppins text-sm text-olive border-b border-olive`}
             placeholder="Email"
             value={email}
-            onChangeText={(value: string) => setEmail(value)}
+            onChangeText={(value: string) => {
+              setEmail(value)
+              setEmailError('')
+            }}
           />
+          {email_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{email_error}</Text>)}
         </View>
         <View style={tw`flex-col w-full my-2`}>
           <TextInput
@@ -42,15 +74,20 @@ const LoginScreen = (): JSX.Element => {
             placeholder="Password"
             secureTextEntry={true}
             value={password}
-            onChangeText={(value: string) => setPassword(value)}
+            onChangeText={(value: string) => {
+              setPassword(value)
+              setPasswordError('')
+            }}
           />
+          {password_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{password_error}</Text>)}
         </View>
         <TouchableOpacity
+          disabled={isLoading}
           activeOpacity={0.7}
-          style={tw`flex-row items-center justify-center w-full my-2 px-2 py-3 rounded-full bg-olive-dark`}
+          style={tw`flex-row items-center justify-center w-full my-2 px-2 py-3 rounded-full bg-olive-dark ${isLoading ? 'opacity-50' : 'opacity-100'}`}
           onPress={handleLogin}
         >
-          <Text style={tw`font-poppins text-sm text-white`}>Log in</Text>
+          <Text style={tw`font-poppins text-sm text-white`}>{ isLoading ? 'Loading...' : 'Log in' }</Text>
         </TouchableOpacity>
       </View>
       <View style={tw`flex-col items-center w-full my-3`}>
