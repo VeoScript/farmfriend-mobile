@@ -2,6 +2,7 @@ import React from 'react'
 import TopBar from '../components/TopBar'
 import tw from '../styles/tailwind'
 import { SafeAreaView, ScrollView, ImageBackground } from 'react-native'
+import { useRoute } from '@react-navigation/native'
 
 interface IProps {
   title: string
@@ -11,6 +12,9 @@ interface IProps {
 type MainLayoutProps = (props: IProps) => JSX.Element
 
 const MainLayout: MainLayoutProps = ({ title, children }) => {
+
+  const route = useRoute()
+
   return (
     <SafeAreaView style={tw`flex-1 bg-olive-light`}>
       <ImageBackground
@@ -19,9 +23,14 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
         style={tw`relative flex-1 flex-col items-start w-full`}
       >
         <TopBar title={title} />
-        <ScrollView style={tw`flex-1 w-full`} keyboardShouldPersistTaps="always">
-          {children}
-        </ScrollView>
+        {(route.name === 'SearchProgramsScreen')
+          ? <>
+              {children}
+            </>
+          : <ScrollView style={tw`flex-1 w-full`} keyboardShouldPersistTaps="always">
+              {children}
+            </ScrollView>
+        }
       </ImageBackground>
     </SafeAreaView>
   )

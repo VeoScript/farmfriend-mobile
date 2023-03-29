@@ -155,3 +155,27 @@ export const editAccountStore = create<type.EditAccountStoreProps>(set => ({
     repassword_error: '',
   })),
 }))
+
+export const createProgramStore = create<type.CreateProgramProps>(set => ({
+  isLoading: false,
+
+  title: '',
+  description: '',
+
+  title_error: '',
+  description_error: '',
+
+  setTitle: (value: string) => set(() => ({ title: value })),
+  setDescription: (value: string) => set(() => ({ description: value })),
+  setTitleError: (value: string) => set(() => ({ title_error: value })),
+  setDescriptionError: (value: string) => set(() => ({ description_error: value })),
+
+  setIsLoading: (value: boolean) => set(() => ({ isLoading: value })),
+  setDefault: () => set(() => ({
+    isLoading: false,
+    title: '',
+    description: '',
+    title_error: '',
+    description_error: ''
+  }))
+}))
