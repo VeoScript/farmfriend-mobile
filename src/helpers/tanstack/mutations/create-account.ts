@@ -3,7 +3,7 @@ import api from '../../../config/Axios'
 
 export const useCreateAccountMutation = () => {
   const queryClient = useQueryClient()
-  return useMutation((_args: { account_type: string, first_name: string, last_name: string, address: string, contact_num: string, email: string, password: string, }) =>
+  return useMutation((_args: { account_type: string, first_name: string, last_name: string, address: string, contact_num: string, email: string, password: string }) =>
     api.post('/api/register', {
       account_type: _args.account_type,
       first_name: _args.first_name,
