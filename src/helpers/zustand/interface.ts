@@ -107,3 +107,21 @@ export interface EditAccountStoreProps {
   setDefaultAccountInfo: () => void
   setDefaultChangePassword: () => void
 }
+
+export interface CreateProgramProps {
+  isLoading: boolean
+
+  title: string
+  description: string
+
+  title_error: string
+  description_error: string
+
+  setTitle: (value: string) => void
+  setDescription: (value: string) => void
+  setTitleError: (value: string) => void
+  setDescriptionError: (value: string) => void
+
+  setIsLoading: (value: boolean) => void
+  setDefault: () => void
+}
