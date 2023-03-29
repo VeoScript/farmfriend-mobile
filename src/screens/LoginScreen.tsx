@@ -100,7 +100,10 @@ const LoginScreen = (): JSX.Element => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={tw`flex-row items-center justify-center w-full my-5 px-2 py-3 rounded-full bg-olive`}
-          onPress={() => useNavigate('CreateAccountScreen')}
+          onPress={() => {
+            setDefault()
+            useNavigate('CreateAccountScreen')
+          }}
         >
           <Text style={tw`font-poppins text-sm text-white`}>Create Account</Text>
         </TouchableOpacity>
