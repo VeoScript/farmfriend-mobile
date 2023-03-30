@@ -1,6 +1,7 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import ProgramDetailsModal from '../../components/Modals/ProgramDetailsModal'
+import moment from 'moment'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
 import { View, Text, TextInput, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native'
@@ -70,7 +71,8 @@ const SearchProgramsScreen = () => {
           }}
         >
           <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.title }</Text>
-          <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
+          <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>{ item.item.description }</Text>
+          <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ moment(item.item.created_at).format('LLL') }</Text>
         </TouchableOpacity>
       </View>
     )

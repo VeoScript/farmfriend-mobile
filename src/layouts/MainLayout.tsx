@@ -23,7 +23,7 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
         style={tw`relative flex-1 flex-col items-start w-full`}
       >
         <TopBar title={title} />
-        {(route.name === 'SearchProgramsScreen' || route.name === 'UserFarmersScreen' || route.name === 'UserLguNgoScreen')
+        {(route.name === 'SearchProgramsScreen' || route.name === 'UserFarmersScreen' || route.name === 'UserLguNgoScreen' || route.name === 'ViewReportsScreen')
           ? <>
               {children}
             </>
