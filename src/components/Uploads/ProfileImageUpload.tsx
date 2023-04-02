@@ -4,7 +4,7 @@ import { Modal, View, Text, Image, Pressable, TouchableOpacity } from 'react-nat
 import { useChangeProfileMutation } from '../../helpers/tanstack/mutations/user'
 import { IMGBB_API_SECRET } from '@env'
 
-interface TypedProps {
+interface IProps {
   userId: string
   modalVisible: any
   setModalVisible: any
@@ -12,7 +12,9 @@ interface TypedProps {
   setPhoto: any
 }
 
-const ProfileImageUpload: React.FC<TypedProps> = ({ userId, photo, setPhoto, modalVisible, setModalVisible }) => {
+type ProfileImageUploadProps = (props: IProps) => JSX.Element
+
+const ProfileImageUpload: ProfileImageUploadProps = ({ userId, photo, setPhoto, modalVisible, setModalVisible }) => {
 
   const changeProfile = useChangeProfileMutation()
 

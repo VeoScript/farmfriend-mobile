@@ -4,7 +4,7 @@ import tw from '../styles/tailwind'
 import { OcticonIcon } from '../utils/Icons'
 import { View, Text } from 'react-native'
 
-interface DropdownPropsTypes {
+interface IProps {
   defaultButtonText: string
   defaultValue: string
   data: any
@@ -13,11 +13,12 @@ interface DropdownPropsTypes {
   rowTextForSelection: any
   disabled: boolean
   isSearch?: boolean
-  isNotCapitalize?: boolean
   emptyDataTextDisplay?: string
 }
 
-const Dropdown: React.FC<DropdownPropsTypes> = ({ data, defaultValue, defaultButtonText, buttonTextAfterSelection, rowTextForSelection, onSelect, disabled, isSearch, isNotCapitalize, emptyDataTextDisplay }) => {
+type DropdownProps = (props: IProps) => JSX.Element
+
+const Dropdown: DropdownProps = ({ data, defaultValue, defaultButtonText, buttonTextAfterSelection, rowTextForSelection, onSelect, disabled, isSearch, emptyDataTextDisplay }) => {
   return (
     <React.Fragment>
       {data?.length > 0
