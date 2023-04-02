@@ -47,7 +47,7 @@ const UserDetailsModal: SettingsProps = ({ image, name, address, contact_num, mo
               ? <Image
                   style={tw`rounded-full w-[10rem] h-[10rem] bg-olive`}
                   resizeMode="cover"
-                  source={require('../../assets/images/aesthetics2.jpg')}
+                  source={{ uri: image }}
                 />
               : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-full bg-olive`}>
                   <FeatherIcon

@@ -77,7 +77,7 @@ const UserLguNgoScreen = () => {
             ? <Image
                 style={tw`rounded-full w-[3rem] h-[3rem] bg-olive`}
                 resizeMode="cover"
-                source={require('../../assets/images/aesthetics2.jpg')}
+                source={{ uri: item.item.image }}
               />
             : <View style={tw`flex-row items-center justify-center w-[3rem] h-[3rem] p-2 overflow-hidden rounded-full bg-olive`}>
                 <FeatherIcon
