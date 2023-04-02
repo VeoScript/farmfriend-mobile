@@ -22,7 +22,7 @@ const LoadingScreen = () => {
           />
           <View style={tw`my-3`}>
             <ActivityIndicator
-              color='#010101'
+              color='#425951'
               size={50}
             />
           </View>

@@ -1,5 +1,6 @@
 import React from 'react'
 import MainLayout from '../layouts/MainLayout'
+import LoadingScreen from '../components/SplashScreens/LoadingScreen'
 import ProfileImageUpload from '../components/Uploads/ProfileImageUpload'
 import tw from '../styles/tailwind'
 import { FeatherIcon } from '../utils/Icons'
@@ -7,11 +8,11 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { launchImageLibrary } from 'react-native-image-picker'
 import { useNavigate } from '../config/RootNavigation'
 import { links } from '../config/Paths'
-import { useGetUserAccount } from '../helpers/hooks/useGetUserAccount'
+import { useGetAccount } from '../helpers/tanstack/queries/account'
 
 const HomeScreen = (): JSX.Element => {
 
-  const account = useGetUserAccount()
+  const { data: account, isLoading: isLoadingAccount } = useGetAccount()
 
   // getting the selected photo for upload
   const [photo, setPhoto] = React.useState<any>(null)
@@ -36,6 +37,8 @@ const HomeScreen = (): JSX.Element => {
       }
     })
   }
+
+  if (isLoadingAccount) return <LoadingScreen />
 
   return (
     <MainLayout title="Profile">
@@ -66,7 +69,7 @@ const HomeScreen = (): JSX.Element => {
           </View>
           <View style={tw`flex-col items-center w-full my-1`}>
             <Text style={tw`font-poppins-bold text-xl text-olive-dark uppercase`}>{ account.first_name + ' ' + account.last_name }</Text>
-            <Text style={tw`font-poppins text-base text-olive`}>{ account.account_type.replace(/_/g, "/") }</Text>
+            <Text style={tw`font-poppins text-base text-olive`}>{ account.account_type?.replace(/_/g, "/") }</Text>
             <Text style={tw`font-poppins text-sm text-olive`}>{ account.address }</Text>
             <Text style={tw`font-poppins text-sm text-olive`}>{ account.contact_num }</Text>
           </View>
