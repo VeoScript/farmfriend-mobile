@@ -24,6 +24,24 @@ export const useUpdateAccountInfoMutation = () => {
   )
 }
 
+export const useChangeProfileMutation = () => {
+  const queryClient = useQueryClient()
+  return useMutation((_args: { id: string, imageURL: string }) =>
+    api.put(`/api/change-profile/${_args.id}`, {
+      imageURL: _args.imageURL
+    }),
+    {
+      onError: (error: any) => {
+        console.error(error.response.data)
+      },
+      onSuccess: async () => {
+        queryClient.invalidateQueries(['account'])
+        queryClient.invalidateQueries(['users'])
+      }
+    }
+  )
+}
+
 export const useChangePasswordMutation = () => {
   const queryClient = useQueryClient()
   return useMutation((_args: { userId: string, old_password: string, new_password: string }) =>

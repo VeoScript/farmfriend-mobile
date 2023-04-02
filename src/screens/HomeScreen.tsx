@@ -1,8 +1,10 @@
 import React from 'react'
 import MainLayout from '../layouts/MainLayout'
+import ProfileImageUpload from '../components/Uploads/ProfileImageUpload'
 import tw from '../styles/tailwind'
 import { FeatherIcon } from '../utils/Icons'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { launchImageLibrary } from 'react-native-image-picker'
 import { useNavigate } from '../config/RootNavigation'
 import { links } from '../config/Paths'
 import { useGetUserAccount } from '../helpers/hooks/useGetUserAccount'
@@ -10,6 +12,30 @@ import { useGetUserAccount } from '../helpers/hooks/useGetUserAccount'
 const HomeScreen = (): JSX.Element => {
 
   const account = useGetUserAccount()
+
+  // getting the selected photo for upload
+  const [photo, setPhoto] = React.useState<any>(null)
+  const [isPhotoModal, setIsPhotoModal] = React.useState<boolean>(false)
+
+  const handleChoosePhoto = () => {
+    let options: any = {
+      selectionLimit: 1,
+      mediaType: 'photo',
+      includeBase64: false
+    }
+
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        setPhoto(null)
+        setIsPhotoModal(false)
+        return
+      }
+      if (response) {
+        setPhoto(response.assets)
+        setIsPhotoModal(true)
+      }
+    })
+  }
 
   return (
     <MainLayout title="Profile">
@@ -20,7 +46,7 @@ const HomeScreen = (): JSX.Element => {
               ? <Image
                   style={tw`rounded-full w-[10rem] h-[10rem] bg-olive-semi-light`}
                   resizeMode="cover"
-                  source={require('../assets/images/aesthetics2.jpg')}
+                  source={{ uri: account.image }}
                 />
               : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-full bg-olive-semi-light`}>
                   <FeatherIcon
@@ -33,7 +59,7 @@ const HomeScreen = (): JSX.Element => {
             <TouchableOpacity
               activeOpacity={0.5}
               style={tw`absolute bottom-2 right-2 z-10 rounded-full p-2 bg-white bg-opacity-50`}
-              onPress={() => console.log('Change Profile Photo')}
+              onPress={handleChoosePhoto}
             >
               <FeatherIcon size={15} name="camera" color="#333333" />
             </TouchableOpacity>
@@ -59,6 +85,13 @@ const HomeScreen = (): JSX.Element => {
           ))}
         </View>
       </View>
+      <ProfileImageUpload
+        userId={account.id}
+        modalVisible={isPhotoModal}
+        setModalVisible={setIsPhotoModal}
+        photo={photo}
+        setPhoto={setPhoto}
+      />
     </MainLayout>
   )
 }
