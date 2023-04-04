@@ -2,43 +2,26 @@ import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import ErrorScreen from '../../components/SplashScreens/ErrorScreen'
 import LoadingScreen from '../../components/SplashScreens/LoadingScreen'
-import Geolocation from 'react-native-geolocation-service'
 import moment from 'moment'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
-import { WEATHER_API_KEY } from '@env'
-
-const BASE_URL = 'https://api.weatherapi.com/v1/forecast.json'
+import { useGetWeather } from '../../helpers/hooks/useGetWeather'
 
 const CheckWeatherScreen = () => {
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [forecast, setForecast] = React.useState<any>()
   const [error, setError] = React.useState<string>('')
+  const [forecast, setForecast] = React.useState<any>()
 
   const handleFetchWeather = () => {
-    setIsLoading(true)
-    Geolocation.getCurrentPosition(
-      position => {
-        const { latitude, longitude } = position.coords
-
-        fetch(`${BASE_URL}?key=${WEATHER_API_KEY}&q=${`${latitude},${longitude}`}&days=6&aqi=yes`)
-          .then(response => response.json())
-          .then(data => {
-            setIsLoading(false)
-            setForecast(data)
-          })
-          .catch(error => {
-            setIsLoading(false)
-            setError(error.message)
-          })
-      },
-      error => {
-        setError(error.message)
-      },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    )
+    useGetWeather({
+      options: {
+        setIsLoading: setIsLoading,
+        setError: setError,
+        setForecast: setForecast
+      }
+    })
   }
 
   React.useEffect(() => {
