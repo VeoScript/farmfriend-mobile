@@ -26,17 +26,20 @@ const LoadingScreen = () => {
               size={50}
             />
           </View>
-          <Text style={tw`font-poppins-bold text-xl text-olive`}>Loading...</Text>
-          {(checkOnline !== null && !checkOnline) && (
-            <View style={tw`flex-col items-center w-full my-5`}>
-              <Text style={tw`font-poppins text-xl text-olive`}>
-                You are offline.
-              </Text>
-              <Text style={tw`font-light text-sm text-olive`}>
-                Check your internet connection.
-              </Text>
-            </View>
-          )}
+          {(checkOnline !== null && !checkOnline)
+            ? <View style={tw`flex-col items-center w-full my-5`}>
+                <Text style={tw`font-poppins text-xl text-olive`}>
+                  You are offline.
+                </Text>
+                <Text style={tw`font-light text-sm text-olive`}>
+                  Check your internet connection.
+                </Text>
+              </View>
+            : <View style={tw`flex-col items-center w-full my-5`}>
+                <Text style={tw`font-poppins text-xl text-olive`}>Loading...</Text>
+                <Text style={tw`mt-1 font-poppins-light text-sm text-olive`}>Great things take time!</Text>
+              </View>
+          }
         </View>
       </ImageBackground>
     </SafeAreaView>

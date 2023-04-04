@@ -31,7 +31,7 @@ const ErrorScreen: ErrorScreenProps = ({ error }) => {
               { error ? error : 'Opps! There is an error.' }
             </Text>
             {!error && (
-              <Text style={tw`font-light text-sm text-olive`}>
+              <Text style={tw`mt-1 font-poppins-light text-sm text-olive`}>
                 We're trying to fix this ASAP.
               </Text>
             )}

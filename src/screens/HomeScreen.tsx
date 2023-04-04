@@ -45,7 +45,7 @@ const HomeScreen = (): JSX.Element => {
       <View style={tw`flex-1 flex-col w-full p-3`}>
         <View style={tw`flex-col items-center w-full p-3`}>
           <View style={tw`relative my-1`}>
-            {account.image
+            {account?.image
               ? <Image
                   style={tw`rounded-full w-[10rem] h-[10rem] bg-olive-semi-light`}
                   resizeMode="cover"
