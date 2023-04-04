@@ -1,7 +1,6 @@
 import React from 'react'
 import AuthLayout from '../layouts/AuthLayout'
 import tw from '../styles/tailwind'
-import { Toast } from '../utils/Toast'
 import { BackHandler, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { useNavigate } from '../config/RootNavigation'
 import { useBackHandler } from '../helpers/hooks/useBackHandler'
@@ -9,6 +8,8 @@ import { loginStore } from '../helpers/zustand/store'
 import { useLoginMutation } from '../helpers/tanstack/mutations/auth'
 
 const LoginScreen = (): JSX.Element => {
+
+  const [globalError, setGlobalError] = React.useState<string>('')
 
   const {
     isLoading,
@@ -38,7 +39,7 @@ const LoginScreen = (): JSX.Element => {
     },
     {
       onError: (error: any) => {
-        Toast(`${error.response?.data?.message}`)
+        setGlobalError(`${error.response?.data?.message}`)
         setIsLoading(false)
       },
       onSuccess: () => {
@@ -56,6 +57,11 @@ const LoginScreen = (): JSX.Element => {
   return (
     <AuthLayout>
       <View style={tw`flex-col w-full`}>
+        {globalError && (
+          <View style={tw`flex-row items-center justify-center w-full p-3 rounded-xl bg-red-600 bg-opacity-50`}>
+            <Text style={tw`font-poppins-light text-xs text-white`}>{ globalError }</Text>
+          </View>
+        )}
         <View style={tw`flex-col w-full my-2`}>
           <TextInput
             style={tw`font-poppins text-sm text-olive border-b border-olive`}
@@ -64,6 +70,7 @@ const LoginScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setEmail(value)
               setEmailError('')
+              setGlobalError('')
             }}
           />
           {email_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{email_error}</Text>)}
@@ -77,6 +84,7 @@ const LoginScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setPassword(value)
               setPasswordError('')
+              setGlobalError('')
             }}
           />
           {password_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{password_error}</Text>)}

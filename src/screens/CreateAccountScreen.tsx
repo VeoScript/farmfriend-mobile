@@ -11,6 +11,8 @@ import { useCreateAccountMutation } from '../helpers/tanstack/mutations/create-a
 
 const CreateAccountScreen = (): JSX.Element => {
 
+  const [globalError, setGlobalError] = React.useState<string>('')
+
   const {
     isLoading,
 
@@ -101,7 +103,7 @@ const CreateAccountScreen = (): JSX.Element => {
     },
     {
       onError: (error: any) => {
-        Toast(`${error.response?.data?.message}`)
+        setGlobalError(`${error.response?.data?.message}`)
         setIsLoading(false)
       },
       onSuccess: () => {
@@ -117,6 +119,11 @@ const CreateAccountScreen = (): JSX.Element => {
   return (
     <AuthLayout>
       <View style={tw`flex-col w-full`}>
+        {globalError && (
+          <View style={tw`flex-row items-center justify-center w-full p-3 rounded-xl bg-red-600 bg-opacity-50`}>
+            <Text style={tw`font-poppins-light text-xs text-white`}>{ globalError }</Text>
+          </View>
+        )}
         <View style={tw`flex-col w-full my-2`}>
           <Dropdown
             defaultButtonText={'Account Type'}
@@ -125,6 +132,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onSelect={(selectedItem: { slug: string }) => {
               setAccountType(selectedItem.slug)
               setAccountTypeError('')
+              setGlobalError('')
             }}
             buttonTextAfterSelection={(selectedItem: { name: string }) => {
               return selectedItem.name
@@ -144,6 +152,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setFirstName(value)
               setFirstNameError('')
+              setGlobalError('')
             }}
           />
           {first_name_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{first_name_error}</Text>)}
@@ -156,6 +165,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setLastName(value)
               setLastNameError('')
+              setGlobalError('')
             }}
           />
           {last_name_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{last_name_error}</Text>)}
@@ -169,6 +179,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setAddress(value)
               setAddressError('')
+              setGlobalError('')
             }}
           />
           {address_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{address_error}</Text>)}
@@ -181,6 +192,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setContactNum(value)
               setContactNumError('')
+              setGlobalError('')
             }}
           />
           {contact_num_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{contact_num_error}</Text>)}
@@ -193,6 +205,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setEmail(value)
               setEmailError('')
+              setGlobalError('')
             }}
           />
           {email_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{email_error}</Text>)}
@@ -206,6 +219,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setPassword(value)
               setPasswordError('')
+              setGlobalError('')
             }}
           />
           {password_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{password_error}</Text>)}
@@ -219,6 +233,7 @@ const CreateAccountScreen = (): JSX.Element => {
             onChangeText={(value: string) => {
               setRePassword(value)
               setRePasswordError('')
+              setGlobalError('')
             }}
           />
           {repassword_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{repassword_error}</Text>)}
