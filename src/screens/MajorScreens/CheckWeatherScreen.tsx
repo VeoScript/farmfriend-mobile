@@ -55,7 +55,7 @@ const CheckWeatherScreen = () => {
               <Text style={tw`font-poppins text-[3rem] text-olive-dark`}>{ Math.round(forecast?.current.temp_c) }° C</Text>
             </View>
             <View style={tw`flex-1 flex-col items-end w-full ml-2`}>
-              <Text style={tw`font-poppins text-base text-right text-olive`}>{ forecast?.current.condition.text }</Text>
+              <Text style={tw`font-poppins text-base text-right text-olive capitalize`}>{ forecast?.current.condition.text }</Text>
             </View>
           </View>
         </View>
