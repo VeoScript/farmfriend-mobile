@@ -69,7 +69,7 @@ const HomeScreen = (): JSX.Element => {
           </View>
           <View style={tw`flex-col items-center w-full my-1`}>
             <Text style={tw`font-poppins-bold text-xl text-olive-dark uppercase`}>{ account.first_name + ' ' + account.last_name }</Text>
-            <Text style={tw`font-poppins text-base text-olive`}>{ account.account_type?.replace(/_/g, "/") }</Text>
+            <Text style={tw`font-poppins-bold text-base text-olive`}>{ account.account_type?.replace(/_/g, "/") }</Text>
             <Text style={tw`font-poppins text-sm text-olive`}>{ account.address }</Text>
             <Text style={tw`font-poppins text-sm text-olive`}>{ account.contact_num }</Text>
           </View>

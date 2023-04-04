@@ -63,7 +63,7 @@ const SearchProgramsScreen = () => {
       <View style={tw`flex-col w-full`}>
         <TouchableOpacity
           activeOpacity={0.7}
-          style={tw`flex-col w-full p-3 border-b border-olive-semi-light`}
+          style={tw`flex-col w-full p-3 border-b border-olive border-opacity-40`}
           onPress={() => {
             setTitle(item.item.title)
             setDescription(item.item.description)

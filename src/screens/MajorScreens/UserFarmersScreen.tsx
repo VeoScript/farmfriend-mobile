@@ -64,7 +64,7 @@ const UserFarmersScreen = () => {
       <View style={tw`flex-col w-full`}>
         <TouchableOpacity
           activeOpacity={0.7}
-          style={tw`flex-row w-full p-3 border-b border-olive-semi-light`}
+          style={tw`flex-row w-full p-3 border-b border-olive border-opacity-40`}
           onPress={() => {
             setImage(item.item.image)
             setName(item.item.first_name + ' ' + item.item.last_name)
