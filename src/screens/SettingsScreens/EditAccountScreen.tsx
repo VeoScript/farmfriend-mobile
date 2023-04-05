@@ -2,7 +2,7 @@ import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import tw from '../../styles/tailwind'
 import { Toast } from '../../utils/Toast'
-import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { editAccountStore } from '../../helpers/zustand/store'
@@ -255,14 +255,18 @@ const EditAccountScreen = () => {
           >
             <Text style={tw`font-poppins text-sm text-white`}>{ isLoading ? 'Changing...' : 'Change' }</Text>
           </TouchableOpacity>
-          <Text style={tw`my-2 font-poppins-light text-xs text-center text-black`}>This is danger area</Text>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={tw`flex-row items-center justify-center w-full my-1 px-2 py-3 rounded-full bg-red-700`}
-            onPress={() => setIsDeleteAccountModal(true)}
-          >
-            <Text style={tw`font-poppins text-sm text-white`}>Delete Account</Text>
-          </TouchableOpacity>
+          {account.account_type !== 'ADMIN' && (
+            <>
+              <Text style={tw`my-2 font-poppins-light text-xs text-center text-black`}>This is danger area</Text>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={tw`flex-row items-center justify-center w-full my-1 px-2 py-3 rounded-full bg-red-700`}
+                onPress={() => setIsDeleteAccountModal(true)}
+              >
+                <Text style={tw`font-poppins text-sm text-white`}>Delete Account</Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       </View>
       <DeleteAccountModal

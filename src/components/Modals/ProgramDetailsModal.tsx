@@ -29,7 +29,7 @@ const ProgramDetailsModal: ProgramDetailsModalProps = ({ title, description, mod
           setModalVisible(false)
         }}
       />
-      <View style={tw`absolute top-5 w-full px-5`}>
+      <View style={tw`absolute top-1/2 -mt-[5rem] w-full px-5`}>
         <View style={tw`flex-col w-full rounded-xl overflow-hidden bg-olive-light`}>
           <View style={tw`flex-row items-center justify-between w-full p-3`}>
             <Text style={tw`font-poppins-bold text-sm text-olive`}>Program Details</Text>
