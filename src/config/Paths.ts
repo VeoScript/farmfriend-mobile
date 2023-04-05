@@ -10,6 +10,13 @@ export const links = [
     'route': 'SuggestedCropsToPlantScreen'
   },
   {
+    'access': ['LGU_NGO'],
+    'name': 'Add Programs',
+    'icon': 'plus',
+    'route': 'AddProgramsScreen'
+  },
+  {
+    'access': ['LGU_NGO', 'FARMERS'],
     'name': 'Search Programs',
     'icon': 'search',
     'route': 'SearchProgramsScreen'

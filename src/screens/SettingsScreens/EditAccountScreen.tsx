@@ -93,16 +93,16 @@ const EditAccountScreen = () => {
       contact_num,
       email
     },
-    {
-      onError: (error: any) => {
-        Toast(`${error.response?.data?.message}`)
-        setIsLoading(false)
-      },
-      onSuccess: () => {
-        Toast('Account created successfully')
-        setIsLoading(false)
-      }
-    })
+      {
+        onError: (error: any) => {
+          Toast(`${error.response?.data?.message}`)
+          setIsLoading(false)
+        },
+        onSuccess: () => {
+          Toast('Account created successfully')
+          setIsLoading(false)
+        }
+      })
   }
 
   const handleChangePassword = async () => {
@@ -118,17 +118,17 @@ const EditAccountScreen = () => {
       old_password,
       new_password
     },
-    {
-      onError: (error: any) => {
-        Toast(`${error.response?.data?.message}`)
-        setIsLoading(false)
-      },
-      onSuccess: () => {
-        Toast('Password updated successfully')
-        setIsLoading(false)
-        setDefaultChangePassword()
-      }
-    })
+      {
+        onError: (error: any) => {
+          Toast(`${error.response?.data?.message}`)
+          setIsLoading(false)
+        },
+        onSuccess: () => {
+          Toast('Password updated successfully')
+          setIsLoading(false)
+          setDefaultChangePassword()
+        }
+      })
   }
 
   return (
@@ -202,7 +202,7 @@ const EditAccountScreen = () => {
             style={tw`flex-row items-center justify-center w-full my-2 px-2 py-3 rounded-full bg-olive-dark ${isLoading ? 'opacity-50' : 'opacity-100'}`}
             onPress={handleUpdateAccountInfo}
           >
-            <Text style={tw`font-poppins text-sm text-white`}>{ isLoading ? 'Updating...' : 'Update' }</Text>
+            <Text style={tw`font-poppins text-sm text-white`}>{isLoading ? 'Updating...' : 'Update'}</Text>
           </TouchableOpacity>
         </View>
 
@@ -253,16 +253,20 @@ const EditAccountScreen = () => {
             style={tw`flex-row items-center justify-center w-full my-1 px-2 py-3 rounded-full bg-olive-dark ${isLoading ? 'opacity-50' : 'opacity-100'}`}
             onPress={handleChangePassword}
           >
-            <Text style={tw`font-poppins text-sm text-white`}>{ isLoading ? 'Changing...' : 'Change' }</Text>
+            <Text style={tw`font-poppins text-sm text-white`}>{isLoading ? 'Changing...' : 'Change'}</Text>
           </TouchableOpacity>
-          <Text style={tw`my-2 font-poppins-light text-xs text-center text-black`}>This is danger area</Text>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={tw`flex-row items-center justify-center w-full my-1 px-2 py-3 rounded-full bg-red-700`}
-            onPress={() => setIsDeleteAccountModal(true)}
-          >
-            <Text style={tw`font-poppins text-sm text-white`}>Delete Account</Text>
-          </TouchableOpacity>
+          {account.account_type !== 'ADMIN' && (
+            <>
+              <Text style={tw`my-2 font-poppins-light text-xs text-center text-black`}>This is danger area</Text>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={tw`flex-row items-center justify-center w-full my-1 px-2 py-3 rounded-full bg-red-700`}
+                onPress={() => setIsDeleteAccountModal(true)}
+              >
+                <Text style={tw`font-poppins text-sm text-white`}>Delete Account</Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       </View>
       <DeleteAccountModal
