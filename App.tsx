@@ -46,14 +46,17 @@ const App = (): JSX.Element => {
                 <Stack.Screen name="HomeScreen" component={screen.HomeScreen} />
                 <Stack.Screen name="CheckWeatherScreen" component={screen.CheckWeatherScreen} />
                 <Stack.Screen name="SuggestedCropsToPlantScreen" component={screen.SuggestedCropsToPlantScreen} />
-                <Stack.Screen name="SearchProgramsScreen" component={screen.SearchProgramsScreen} />
                 <Stack.Screen name="AddProgramsScreen" component={screen.AddProgramsScreen} />
+                <Stack.Screen name="AddCropsScreen" component={screen.AddCropsScreen} />
+                <Stack.Screen name="SearchProgramsScreen" component={screen.SearchProgramsScreen} />
+                <Stack.Screen name="SearchCropsScreen" component={screen.SearchCropsScreen} />
                 <Stack.Screen name="UserFarmersScreen" component={screen.UserFarmersScreen} />
                 <Stack.Screen name="UserLguNgoScreen" component={screen.UserLguNgoScreen} />
                 <Stack.Screen name="NotificationsScreen" component={screen.NotificationsScreen} />
                 <Stack.Screen name="ViewRatesScreen" component={screen.ViewRatesScreen} />
                 <Stack.Screen name="ViewReportsScreen" component={screen.ViewReportsScreen} />
                 <Stack.Screen name="EditAccountScreen" component={screen.EditAccountScreen} />
+                <Stack.Screen name="EditCropsScreen" component={screen.EditCropsScreen} />
                 <Stack.Screen name="RateAppScreen" component={screen.RateAppScreen} />
                 <Stack.Screen name="ReportHereScreen" component={screen.ReportHereScreen} />
               </>

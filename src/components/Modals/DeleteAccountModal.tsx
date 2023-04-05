@@ -10,9 +10,9 @@ interface IProps {
   setModalVisible: (value: boolean) => void
 }
 
-type SettingsProps = (props: IProps) => JSX.Element
+type DeleteAccountModalProps = (props: IProps) => JSX.Element
 
-const DeleteAccountModal: SettingsProps = ({ accountId, modalVisible, setModalVisible }) => {
+const DeleteAccountModal: DeleteAccountModalProps = ({ accountId, modalVisible, setModalVisible }) => {
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [userPassword, setUserPassword] = React.useState<string>('')

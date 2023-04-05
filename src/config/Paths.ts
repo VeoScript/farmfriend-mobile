@@ -10,14 +10,24 @@ export const links = [
     'route': 'SuggestedCropsToPlantScreen'
   },
   {
+    'name': 'Add Programs',
+    'icon': 'plus',
+    'route': 'AddProgramsScreen'
+  },
+  {
     'name': 'Search Programs',
     'icon': 'search',
     'route': 'SearchProgramsScreen'
   },
   {
-    'name': 'Add Programs',
+    'name': 'Add Crops',
     'icon': 'plus',
-    'route': 'AddProgramsScreen'
+    'route': 'AddCropsScreen'
+  },
+  {
+    'name': 'Search Crops',
+    'icon': 'heart',
+    'route': 'SearchCropsScreen'
   },
   {
     'name': 'User Farmers',
