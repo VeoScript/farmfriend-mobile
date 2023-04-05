@@ -76,16 +76,19 @@ const HomeScreen = (): JSX.Element => {
         </View>
         <View style={tw`flex-col items-center justify-center w-full`}>
           <View style={tw`flex-row flex-wrap w-[18rem] my-2`}>
-            {links.map((module: { name: string, icon: string, route: string }, i: number) => (
-              <TouchableOpacity
-                key={i}
-                activeOpacity={0.5}
-                style={tw`flex-col items-center justify-center w-[8rem] h-[8rem] m-2 p-5 rounded-xl shadow-md border border-olive-semi-light bg-olive-light`}
-                onPress={() => useNavigate(module.route)}
-              >
-                <FeatherIcon size={50} name={module.icon} color="#425951" />
-                <Text style={tw`mt-1 font-poppins text-xs text-center text-olive`}>{ module.name }</Text>
-              </TouchableOpacity>
+            {links.map((module: { access: any[], name: string, icon: string, route: string }, i: number) => (
+              <React.Fragment key={i}>
+                {(module.access.some((screenAccess: string) => screenAccess === account.account_type)) && (
+                  <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={tw`flex-col items-center justify-center w-[8rem] h-[8rem] m-2 p-5 rounded-xl shadow-md border border-olive-semi-light bg-olive-light`}
+                    onPress={() => useNavigate(module.route)}
+                  >
+                    <FeatherIcon size={50} name={module.icon} color="#425951" />
+                    <Text style={tw`mt-1 font-poppins text-xs text-center text-olive`}>{ module.name }</Text>
+                  </TouchableOpacity>
+                )}
+              </React.Fragment>
             ))}
           </View>
         </View>

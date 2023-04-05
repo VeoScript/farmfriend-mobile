@@ -4,6 +4,7 @@ import { OcticonIcon } from '../../utils/Icons'
 import { Modal, Pressable, View, Text, TouchableOpacity } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { settingsLinks } from '../../config/Paths'
+import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
 
 interface IProps {
   modalVisible: boolean
@@ -13,6 +14,9 @@ interface IProps {
 type SettingsProps = (props: IProps) => JSX.Element
 
 const SettingsModal: SettingsProps = ({ modalVisible, setModalVisible }) => {
+
+  const account: any = useGetUserAccount()
+
   return (
     <Modal
       animationType="fade"
@@ -40,19 +44,22 @@ const SettingsModal: SettingsProps = ({ modalVisible, setModalVisible }) => {
               <OcticonIcon size={18} name="x" color="#333333" />
             </TouchableOpacity>
           </View>
-          {settingsLinks.map((setting: { name: string, icon: string, route: string }, i: number) => (
-            <TouchableOpacity
-              key={i}
-              activeOpacity={0.5}
-              style={tw`flex-row items-center justify-start w-full border-t border-olive-semi-light p-3`}
-              onPress={() => {
-                setModalVisible(false)
-                useNavigate(setting.route)
-              }}
-            >
-              <OcticonIcon size={20} name={setting.icon} color="#333333" />
-              <Text style={tw`ml-2 font-poppins text-sm text-olive`}>{ setting.name }</Text>
-            </TouchableOpacity>
+          {settingsLinks.map((setting: { access: any[], name: string, icon: string, route: string }, i: number) => (
+            <React.Fragment key={i}>
+              {setting.access.some((settingAccess: string) => settingAccess === account?.account_type) && (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  style={tw`flex-row items-center justify-start w-full border-t border-olive-semi-light p-3`}
+                  onPress={() => {
+                    setModalVisible(false)
+                    useNavigate(setting.route)
+                  }}
+                >
+                  <OcticonIcon size={20} name={setting.icon} color="#333333" />
+                  <Text style={tw`ml-2 font-poppins text-sm text-olive`}>{ setting.name }</Text>
+                </TouchableOpacity>
+              )}
+            </React.Fragment>
           ))}
         </View>
       </View>

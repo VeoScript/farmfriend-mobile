@@ -65,6 +65,7 @@ const LoginScreen = (): JSX.Element => {
         <View style={tw`flex-col w-full my-2`}>
           <TextInput
             style={tw`font-poppins text-sm text-olive border-b border-olive`}
+            keyboardType="email-address"
             placeholder="Email"
             value={email}
             onChangeText={(value: string) => {
