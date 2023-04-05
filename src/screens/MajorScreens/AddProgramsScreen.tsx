@@ -3,6 +3,8 @@ import MainLayout from '../../layouts/MainLayout'
 import tw from '../../styles/tailwind'
 import { Toast } from '../../utils/Toast'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { useGoBack } from '../../config/RootNavigation'
+import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
 import { createProgramStore } from '../../helpers/zustand/store'
 import { useCreateProgramMutation } from '../../helpers/tanstack/mutations/programs'
@@ -44,12 +46,17 @@ const AddProgramsScreen = () => {
         setIsLoading(false)
       },
       onSuccess: () => {
-        Toast('Password updated successfully')
+        Toast('Created successfully')
         setIsLoading(false)
         setDefault()
       }
     })
   }
+
+  useBackHandler(() => {
+    setDefault()
+    useGoBack()
+  })
 
   return (
     <MainLayout title="Add Programs">

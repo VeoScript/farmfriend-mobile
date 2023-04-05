@@ -179,3 +179,40 @@ export const createProgramStore = create<type.CreateProgramProps>(set => ({
     description_error: ''
   }))
 }))
+
+export const createCropStore = create<type.CreateCropProps>(set => ({
+  isLoading: false,
+
+  photo: '',
+  name: '',
+  description: '',
+  temperature: '',
+
+  photo_error: '',
+  name_error: '',
+  description_error: '',
+  temperature_error: '',
+
+  setPhoto: (value: any) => set(() => ({ photo: value })),
+  setName: (value: string) => set(() => ({ name: value })),
+  setDescription: (value: string) => set(() => ({ description: value })),
+  setTemperature: (value: string) => set(() => ({ temperature: value })),
+
+  setPhotoError: (value: string) => set(() => ({ photo_error: value })),
+  setNameError: (value: string) => set(() => ({ name_error: value })),
+  setDescriptionError: (value: string) => set(() => ({ description_error: value })),
+  setTemperatureError: (value: string) => set(() => ({ temperature_error: value })),
+
+  setIsLoading: (value: boolean) => set(() => ({ isLoading: value })),
+  setDefault: () => set(() => ({
+    isLoading: false,
+    photo: '',
+    name: '',
+    description: '',
+    temperature: '',
+    photo_error: '',
+    name_error: '',
+    description_error: '',
+    temperature_error: '',
+  }))
+}))

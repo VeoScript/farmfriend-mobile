@@ -14,6 +14,7 @@ if (Text.defaultProps == null) {
 if (TextInput.defaultProps == null) {
   TextInput.defaultProps = {};
   TextInput.defaultProps.allowFontScaling = false;
+  TextInput.defaultProps.autoComplete = "off";
 }
 
 AppRegistry.registerComponent(appName, () => App);

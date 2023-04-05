@@ -2,19 +2,21 @@ import React from 'react'
 import tw from '../../styles/tailwind'
 import { FeatherIcon, OcticonIcon } from '../../utils/Icons'
 import { Modal, Pressable, View, Text, TouchableOpacity, Image } from 'react-native'
+import { useNavigate } from '../../config/RootNavigation'
 
 interface IProps {
+  id: string
   image: string
   name: string
-  address: string
-  contact_num: string
+  description: string
+  temperature: string
   modalVisible: boolean
   setModalVisible: (value: boolean) => void
 }
 
-type UserDetailsModalProps = (props: IProps) => JSX.Element
+type CropsModalProps = (props: IProps) => JSX.Element
 
-const UserDetailsModal: UserDetailsModalProps = ({ image, name, address, contact_num, modalVisible, setModalVisible }) => {
+const CropsModal: CropsModalProps = ({ id, image, name, description, temperature, modalVisible, setModalVisible }) => {
   return (
     <Modal
       animationType="fade"
@@ -34,7 +36,7 @@ const UserDetailsModal: UserDetailsModalProps = ({ image, name, address, contact
       <View style={tw`absolute top-1/2 -mt-[10rem] w-full px-5`}>
         <View style={tw`flex-col w-full rounded-xl overflow-hidden bg-olive-light`}>
           <View style={tw`flex-row items-center justify-between w-full p-3`}>
-            <Text style={tw`font-poppins-bold text-sm text-olive`}>User Details</Text>
+            <Text style={tw`font-poppins-bold text-sm text-olive`}>Crop Details</Text>
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => setModalVisible(false)}
@@ -45,7 +47,7 @@ const UserDetailsModal: UserDetailsModalProps = ({ image, name, address, contact
           <View style={tw`flex-col items-center w-full px-3 pb-3`}>
             {image
               ? <Image
-                  style={tw`rounded-full w-[10rem] h-[10rem] bg-olive`}
+                  style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive`}
                   resizeMode="cover"
                   source={{ uri: image }}
                 />
@@ -59,9 +61,25 @@ const UserDetailsModal: UserDetailsModalProps = ({ image, name, address, contact
             }
             <View style={tw`flex-col items-center w-full mt-3`}>
               <Text style={tw`my-0.5 font-poppins-bold text-base text-olive-dark`}>{ name }</Text>
-              <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>{ address }</Text>
-              <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>{ contact_num }</Text>
+              <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>{ description }</Text>
+            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ temperature }°</Text></Text>
             </View>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={tw`flex-row items-center justify-center w-full my-1 px-2 py-3 rounded-full bg-olive-semi-light`}
+              onPress={() => {
+                setModalVisible(false)
+                useNavigate('EditCropsScreen', {
+                  cropId: id,
+                  cropPhoto: image,
+                  cropName: name,
+                  cropDescription: description,
+                  cropTemperature: temperature
+                })
+              }}
+            >
+              <Text style={tw`font-poppins text-sm text-white`}>Edit</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -69,4 +87,4 @@ const UserDetailsModal: UserDetailsModalProps = ({ image, name, address, contact
   )
 }
 
-export default UserDetailsModal
+export default CropsModal

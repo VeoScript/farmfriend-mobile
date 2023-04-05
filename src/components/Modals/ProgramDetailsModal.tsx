@@ -10,9 +10,9 @@ interface IProps {
   setModalVisible: (value: boolean) => void
 }
 
-type SettingsProps = (props: IProps) => JSX.Element
+type ProgramDetailsModalProps = (props: IProps) => JSX.Element
 
-const ProgramDetailsModal: SettingsProps = ({ title, description, modalVisible, setModalVisible }) => {
+const ProgramDetailsModal: ProgramDetailsModalProps = ({ title, description, modalVisible, setModalVisible }) => {
   return (
     <Modal
       animationType="fade"

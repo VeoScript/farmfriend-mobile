@@ -125,3 +125,30 @@ export interface CreateProgramProps {
   setIsLoading: (value: boolean) => void
   setDefault: () => void
 }
+
+export interface CreateCropProps {
+  isLoading: boolean
+
+  photo: any
+  name: string
+  description: string
+  temperature: string
+
+  photo_error: string
+  name_error: string
+  description_error: string
+  temperature_error: string
+  
+  setPhoto: (value: any) => void
+  setName: (value: string) => void
+  setDescription: (value: string) => void
+  setTemperature: (value: string) => void
+
+  setPhotoError: (value: string) => void
+  setNameError: (value: string) => void
+  setDescriptionError: (value: string) => void
+  setTemperatureError: (value: string) => void
+
+  setIsLoading: (value: boolean) => void
+  setDefault: () => void
+}
