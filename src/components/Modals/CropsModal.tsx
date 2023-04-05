@@ -33,7 +33,7 @@ const CropsModal: CropsModalProps = ({ id, image, name, description, temperature
           setModalVisible(false)
         }}
       />
-      <View style={tw`absolute top-1/2 -mt-[10rem] w-full px-5`}>
+      <View style={tw`absolute top-5 w-full px-5`}>
         <View style={tw`flex-col w-full rounded-xl overflow-hidden bg-olive-light`}>
           <View style={tw`flex-row items-center justify-between w-full p-3`}>
             <Text style={tw`font-poppins-bold text-sm text-olive`}>Crop Details</Text>
@@ -61,8 +61,8 @@ const CropsModal: CropsModalProps = ({ id, image, name, description, temperature
             }
             <View style={tw`flex-col items-center w-full mt-3`}>
               <Text style={tw`my-0.5 font-poppins-bold text-base text-olive-dark`}>{ name }</Text>
+              <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ temperature }°</Text></Text>
               <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>{ description }</Text>
-            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ temperature }°</Text></Text>
             </View>
             <TouchableOpacity
               activeOpacity={0.7}
