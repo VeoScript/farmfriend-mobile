@@ -187,6 +187,7 @@ const CreateAccountScreen = (): JSX.Element => {
         <View style={tw`flex-col w-full my-2`}>
           <TextInput
             style={tw`font-poppins text-sm text-olive border-b border-olive`}
+            keyboardType="decimal-pad"
             placeholder="Contact no."
             value={contact_num}
             onChangeText={(value: string) => {
@@ -200,6 +201,7 @@ const CreateAccountScreen = (): JSX.Element => {
         <View style={tw`flex-col w-full my-2`}>
           <TextInput
             style={tw`font-poppins text-sm text-olive border-b border-olive`}
+            keyboardType="email-address"
             placeholder="Email"
             value={email}
             onChangeText={(value: string) => {
