@@ -7,6 +7,7 @@ import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import { useGetWeather } from '../../helpers/hooks/useGetWeather'
+import { requestLocationPermission } from '../../helpers/hooks/useCheckLocationPermission'
 
 const CheckWeatherScreen = () => {
 
@@ -26,6 +27,7 @@ const CheckWeatherScreen = () => {
 
   React.useEffect(() => {
     handleFetchWeather()
+    requestLocationPermission()
   }, [])
 
   if (!forecast || isLoading) return <LoadingScreen />
