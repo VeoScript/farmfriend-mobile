@@ -27,7 +27,7 @@ const CropsModal: CropsModalProps = ({ id, image, name, description, temperature
       }}      
     >
       <Pressable
-        style={tw`absolute inset-0 w-full h-full bg-black bg-opacity-30`}
+        style={tw`absolute inset-0 w-full h-full bg-black bg-opacity-50`}
         disabled={false}
         onPress={() => {
           setModalVisible(false)
