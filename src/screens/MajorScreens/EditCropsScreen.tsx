@@ -8,7 +8,6 @@ import { launchImageLibrary } from 'react-native-image-picker'
 import { useRoute } from '@react-navigation/native'
 import { useGoBack, useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
-import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
 import { createCropStore } from '../../helpers/zustand/store'
 import { useUpdateCropMutation } from '../../helpers/tanstack/mutations/crops'
 import { IMGBB_API_SECRET } from '@env'
@@ -16,8 +15,6 @@ import { IMGBB_API_SECRET } from '@env'
 const EditCropsScreen = () => {
 
   const route: any = useRoute()
-
-  const account = useGetUserAccount()
 
   const {
     isLoading,
@@ -176,6 +173,7 @@ const EditCropsScreen = () => {
           </View>
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
+              editable={!isLoading}
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Name"
               value={name}
@@ -189,6 +187,7 @@ const EditCropsScreen = () => {
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
               multiline
+              editable={!isLoading}
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Description"
               value={description}
@@ -201,6 +200,7 @@ const EditCropsScreen = () => {
           </View>
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
+              editable={!isLoading}
               keyboardType="decimal-pad"
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Required Temperature"

@@ -155,6 +155,7 @@ const AddCropsScreen = () => {
           </View>
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
+              editable={!isLoading}
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Name"
               value={name}
@@ -168,6 +169,7 @@ const AddCropsScreen = () => {
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
               multiline
+              editable={!isLoading}
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Description"
               value={description}
@@ -180,6 +182,7 @@ const AddCropsScreen = () => {
           </View>
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
+              editable={!isLoading}
               keyboardType="decimal-pad"
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Required Temperature"
