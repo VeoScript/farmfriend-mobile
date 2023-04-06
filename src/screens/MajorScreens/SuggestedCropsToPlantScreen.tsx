@@ -4,18 +4,22 @@ import ErrorScreen from '../../components/SplashScreens/ErrorScreen'
 import LoadingScreen from '../../components/SplashScreens/LoadingScreen'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { View, Image, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import { useGetWeather } from '../../helpers/hooks/useGetWeather'
 import { requestLocationPermission } from '../../helpers/hooks/useCheckLocationPermission'
-import { suggestedCrops } from '../../shared/mocks/suggested-crops'
+import { useGetSuggestedCrops } from '../../helpers/tanstack/queries/crops'
 
 const SuggestedCropsToPlantScreen = () => {
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [error, setError] = React.useState<string>('')
+  const [search, setSearch] = React.useState<string>('')
   const [forecast, setForecast] = React.useState<any>()
 
+  const { data: suggestedCrops, isLoading: isLoadingSuggestedCrops, isError: isErrorSuggestedCrops, refetch } = useGetSuggestedCrops(search)
+
   const handleFetchWeather = () => {
+    refetch()
     useGetWeather({
       options: {
         setIsLoading: setIsLoading,
@@ -31,7 +35,10 @@ const SuggestedCropsToPlantScreen = () => {
   }, [])
 
   if (!forecast || isLoading) return <LoadingScreen />
-  if (error) return <ErrorScreen error={error} />
+  if (error || isErrorSuggestedCrops) return <ErrorScreen error={error} />
+
+  const currentTemp = Math.round(forecast?.current.temp_c)
+  const currentAverageTemp = Math.round(forecast?.current.feelslike_c)
 
   return (
     <MainLayout title="Suggested Crops">
@@ -65,19 +72,56 @@ const SuggestedCropsToPlantScreen = () => {
               <FeatherIcon size={18} name="refresh-cw" color="#333333" />
             </TouchableOpacity>
           </View>
-          {suggestedCrops.map((crop: { image: string, name: string, description: string }, i: number) => (
-            <View key={i} style={tw`flex-row w-full p-3 overflow-hidden border-b border-olive border-opacity-40`}>
-              <Image
-                style={tw`rounded-xl w-[3rem] h-[3rem] bg-olive`}
-                resizeMode="cover"
-                source={{ uri: crop.image }}
+          <View style={tw`flex-col w-full px-3 mb-1`}>
+            <View style={tw`flex-row items-center w-full border-b border-olive`}>
+              <FeatherIcon size={20} name="search" color="#425951" />
+              <TextInput
+                style={tw`w-full ml-2 font-poppins text-sm text-olive`}
+                placeholder="Search"
+                value={search}
+                onChangeText={(value: string) => setSearch(value)}
               />
-              <View style={tw`flex-1 flex-col w-full ml-2 overflow-hidden`}>
-                <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ crop.name }</Text>
-                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
-              </View>
             </View>
-          ))}
+          </View>
+          {isLoadingSuggestedCrops
+            ? <View style={tw`flex-col items-center w-full my-10`}>
+                <ActivityIndicator style={tw`pb-3`} color='#425951' size={40} />
+                <Text style={tw`font-poppins text-base`}>Loading...</Text>
+              </View>
+            : <>
+                {suggestedCrops.length === 0
+                  ? <View style={tw`flex-1 flex-col items-center justify-center w-full my-3 `}>
+                      <View style={tw`flex-1 w-full max-w-xs h-full`}>
+                        <Text style={tw`font-poppins text-sm text-olive`}>
+                          {search
+                            ? `There's no result in keyword of '${search}'.`
+                            : `There's no suggested crops as of now.`
+                          }
+                        </Text>
+                      </View>
+                    </View>
+                  : <>
+                      {suggestedCrops.map((crop: { image: string, name: string, description: string, temperature: string }, i: number) => (
+                        <React.Fragment key={i}>
+                          {(Number(crop.temperature) >= Math.min(currentTemp, currentAverageTemp) && Number(crop.temperature) <= Math.max(currentTemp, currentAverageTemp)) && (
+                            <View style={tw`flex-row w-full p-3 overflow-hidden border-b border-olive border-opacity-40`}>
+                              <Image
+                                style={tw`rounded-xl w-[3rem] h-[3rem] bg-olive`}
+                                resizeMode="cover"
+                                source={{ uri: crop.image }}
+                              />
+                              <View style={tw`flex-1 flex-col w-full ml-2 overflow-hidden`}>
+                                <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ crop.name }</Text>
+                                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
+                              </View>
+                            </View>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </>
+                }
+              </>
+          }
         </View>
       </View>
     </MainLayout>
