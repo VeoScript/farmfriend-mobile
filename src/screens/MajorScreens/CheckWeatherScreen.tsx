@@ -43,7 +43,7 @@ const CheckWeatherScreen = () => {
               <Text style={tw`font-poppins-light text-xs text-olive`}>{ forecast?.location.region }, { forecast?.location.country }</Text>
             </View>
             <View style={tw`flex-1 flex-col items-end w-full ml-2`}>
-              <Text style={tw`font-poppins text-lg text-olive`}>{ moment(String(new Date())).format('LT') }</Text>
+              <Text style={tw`font-poppins text-lg text-olive`}>{ moment(forecast?.location.localtime).format('LT') }</Text>
               <Text style={tw`font-poppins-light text-xs text-olive`}>{ moment(forecast?.location.localtime).format('LL') }</Text>
             </View>
           </View>
