@@ -1,6 +1,5 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
-import CropsModal from '../../components/Modals/CropsModal'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
 import { View, Text, TextInput, ActivityIndicator, FlatList, TouchableOpacity, Image } from 'react-native'
@@ -11,13 +10,6 @@ import { useGetCrops } from '../../helpers/tanstack/queries/crops'
 const SearchCropsScreen = () => {
 
   const [search, setSearch] = React.useState<string>('')
-
-  const [cropId, setCropId] = React.useState<string>('')
-  const [image, setImage] = React.useState<string>('')
-  const [name, setName] = React.useState<string>('')
-  const [description, setDescription] = React.useState<string>('')
-  const [temperature, setTemperature] = React.useState<string>('')
-  const [modalVisible, setModalVisible] = React.useState<boolean>(false)
 
   useBackHandler(() => {
     useNavigate('HomeScreen')
@@ -67,12 +59,9 @@ const SearchCropsScreen = () => {
           activeOpacity={0.7}
           style={tw`flex-row w-full p-3 border-b border-olive border-opacity-40`}
           onPress={() => {
-            setCropId(item.item.id)
-            setImage(item.item.image)
-            setName(item.item.name)
-            setDescription(item.item.description)
-            setTemperature(item.item.temperature )
-            setModalVisible(true)
+            useNavigate('ViewCropsScreen', {
+              id: item.item.id
+            })
           }}
         >
           {item.item.image
@@ -92,7 +81,7 @@ const SearchCropsScreen = () => {
           <View style={tw`flex-1 flex-col ml-3`}>
             <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.name }</Text>
             <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.temperature }°</Text></Text>
-            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
+            <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -129,15 +118,6 @@ const SearchCropsScreen = () => {
             />
         }
       </View>
-      <CropsModal
-        id={cropId}
-        image={image}
-        name={name}
-        description={description}
-        temperature={temperature}
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
     </MainLayout>
   )
 }

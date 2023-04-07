@@ -1,6 +1,5 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
-import ProgramDetailsModal from '../../components/Modals/ProgramDetailsModal'
 import moment from 'moment'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
@@ -12,10 +11,6 @@ import { useGetPrograms } from '../../helpers/tanstack/queries/programs'
 const SearchProgramsScreen = () => {
 
   const [search, setSearch] = React.useState<string>('')
-
-  const [title, setTitle] = React.useState<string>('')
-  const [description, setDescription] = React.useState<string>('')
-  const [modalVisible, setModalVisible] = React.useState<boolean>(false)
 
   useBackHandler(() => {
     useNavigate('HomeScreen')
@@ -65,13 +60,13 @@ const SearchProgramsScreen = () => {
           activeOpacity={0.7}
           style={tw`flex-col w-full p-3 border-b border-olive border-opacity-40`}
           onPress={() => {
-            setTitle(item.item.title)
-            setDescription(item.item.description)
-            setModalVisible(true)
+            useNavigate('ViewProgramsScreen', {
+              id: item.item.id
+            })
           }}
         >
           <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.title }</Text>
-          <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>{ item.item.description }</Text>
+          <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-sm text-olive`}>{ item.item.description }</Text>
           <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ moment(item.item.created_at).format('LLL') }</Text>
         </TouchableOpacity>
       </View>
@@ -108,12 +103,6 @@ const SearchProgramsScreen = () => {
             />
         }
       </View>
-      <ProgramDetailsModal
-        title={title}
-        description={description}
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
     </MainLayout>
   )
 }

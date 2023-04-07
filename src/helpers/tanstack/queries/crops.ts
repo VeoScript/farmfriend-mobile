@@ -16,6 +16,21 @@ export const useGetCrops = (search: string) => {
   )
 }
 
+export const useGetCrop = (id: string) => {
+  return useQuery(['crop', id],
+    async () => {
+      const crop = await api.get(`/api/crop/${id}`)
+      return crop.data
+    },
+    {
+      enabled: !!id,
+      onError: (error: any) => {
+        console.error('ERROR CROP DETAILS', error.response.data)
+      }
+    }
+  )
+}
+
 export const useGetSuggestedCrops = (search: string) => {
   return useQuery(['suggestedCrops', search],
     async () => {

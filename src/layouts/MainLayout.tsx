@@ -1,9 +1,9 @@
 import React from 'react'
 import TopBar from '../components/TopBar'
+import Copyright from '../components/Copyright'
 import tw from '../styles/tailwind'
 import { SafeAreaView, ScrollView, ImageBackground } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import Copyright from '../components/Copyright'
 
 interface IProps {
   title: string
@@ -29,7 +29,8 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
           route.name === 'UserFarmersScreen' ||
           route.name === 'UserLguNgoScreen' ||
           route.name === 'ViewReportsScreen' ||
-          route.name === 'ViewRatesScreen'
+          route.name === 'ViewRatesScreen' ||
+          route.name === 'NotificationsScreen'
         )
           ? <>
               {children}
