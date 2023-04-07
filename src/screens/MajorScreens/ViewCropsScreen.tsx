@@ -18,7 +18,7 @@ const ViewCropsScreen = () => {
 
   return (
     <MainLayout title={crop.name}>
-      <View style={tw`flex-1 flex-col items-center w-full p-3`}>
+      <View style={tw`relative flex-1 flex-col items-center w-full p-3`}>
         <Image
           style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive bg-opacity-50`}
           resizeMode="cover"
@@ -26,7 +26,7 @@ const ViewCropsScreen = () => {
         />
         <TouchableOpacity
           activeOpacity={0.5}
-          style={tw`w-auto rounded-full p-2 bg-white bg-opacity-50`}
+          style={tw`absolute top-3 right-3 w-auto rounded-full p-2 bg-white bg-opacity-50`}
           onPress={() => useNavigate('EditCropsScreen', {
             cropId: crop.id,
             cropPhoto: crop.image,
