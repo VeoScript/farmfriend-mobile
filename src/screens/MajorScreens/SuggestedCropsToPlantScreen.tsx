@@ -121,7 +121,7 @@ const SuggestedCropsToPlantScreen = () => {
                               />
                               <View style={tw`flex-1 flex-col w-full ml-2 overflow-hidden`}>
                                 <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ crop.name }</Text>
-                                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ crop.temperature }°</Text></Text>
+                                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ crop.temperature }°C</Text></Text>
                                 <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
                               </View>
                             </TouchableOpacity>

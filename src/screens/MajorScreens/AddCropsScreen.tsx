@@ -183,7 +183,7 @@ const AddCropsScreen = () => {
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
               editable={!isLoading}
-              keyboardType="decimal-pad"
+              keyboardType="numeric"
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
               placeholder="Required Temperature"
               value={temperature}
