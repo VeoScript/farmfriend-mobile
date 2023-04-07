@@ -23,7 +23,7 @@ const ReportHereScreen = () => {
   })
 
   const handleCreateReport = async () => {
-    if (reportDescription === '') return setReportDescriptionError('Report description is required')
+    if (reportDescription === '') return setReportDescriptionError('Report concern/feedback is required')
 
     setIsLoading(false)
 
@@ -49,12 +49,12 @@ const ReportHereScreen = () => {
     <MainLayout title="Report Here">
       <View style={tw`flex-col w-full my-2 px-5`}>
         <View style={tw`flex-col w-full my-2`}>
-          <Text style={tw`font-poppins-bold text-xl`}>Create Report</Text>
+          <Text style={tw`font-poppins-bold text-base`}>Find some bugs or concern?</Text>
           <View style={tw`flex-col w-full my-2`}>
             <TextInput
               multiline
               style={tw`font-poppins text-sm text-olive border-b border-olive`}
-              placeholder="Description"
+              placeholder="Concern/Feedback"
               value={reportDescription}
               onChangeText={(value: string) => {
                 setReportDescription(value)

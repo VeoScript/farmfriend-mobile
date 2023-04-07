@@ -57,8 +57,14 @@ const ViewReportsScreen = () => {
       <View style={tw`flex-col w-full`}>
         <View style={tw`flex-row w-full p-3 border-b border-olive border-opacity-40`}>
           <View style={tw`flex-col ml-3`}>
-            <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.description }</Text>
-            <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>by { item.item.type.replace(/_/g, "/") }</Text>
+            <View style={tw`flex-row items-center w-full`}>
+              <FeatherIcon size={15} name="users" color="#425951" />
+              <Text style={tw`ml-1 my-0.5 font-poppins-bold text-sm text-olive`}>{ item.item.type.replace(/_/g, "/") }</Text>
+            </View>
+            <View style={tw`my-2`}>
+              <Text style={tw`font-poppins-bold text-sm text-olive-dark`}>{ item.item.description }</Text>
+              <Text style={tw`font-poppins text-xs text-olive`}>Concern/Feedback</Text>
+            </View>
             <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ moment(item.item.created_at).format('LLL') }</Text>
           </View>
         </View>
