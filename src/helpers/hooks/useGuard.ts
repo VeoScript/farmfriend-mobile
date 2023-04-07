@@ -1,7 +1,7 @@
 import React from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const useGuard = () => {
+export const useGuard = (): boolean => {
   // checking the session
   const [session, setSession] = React.useState<string>()
 
