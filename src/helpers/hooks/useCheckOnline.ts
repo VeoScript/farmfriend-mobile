@@ -2,8 +2,8 @@ import React from 'react'
 import NetInfo from '@react-native-community/netinfo'
 import { Platform } from 'react-native'
 
-export const useCheckOnline = () => {
-  const [isOnline, setIsOnline] = React.useState<any>(null)
+export const useCheckOnline = (): boolean => {
+  const [isOnline, setIsOnline] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     if (Platform.OS !== 'web') {

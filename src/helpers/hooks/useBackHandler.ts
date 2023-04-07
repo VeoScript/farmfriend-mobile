@@ -2,7 +2,7 @@ import React from 'react'
 import { BackHandler } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
-export function useBackHandler(handleBack: () => void) {
+export function useBackHandler(handleBack: () => void): void {
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
