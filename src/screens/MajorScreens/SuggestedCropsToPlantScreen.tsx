@@ -106,7 +106,7 @@ const SuggestedCropsToPlantScreen = () => {
                           {(Number(crop.temperature) >= Math.min(currentTemp, currentAverageTemp) && Number(crop.temperature) <= Math.max(currentTemp, currentAverageTemp)) && (
                             <View style={tw`flex-row w-full p-3 overflow-hidden border-b border-olive border-opacity-40`}>
                               <Image
-                                style={tw`rounded-xl w-[3rem] h-[3rem] bg-olive`}
+                                style={tw`rounded-xl w-[3rem] h-[3rem] bg-olive bg-opacity-50`}
                                 resizeMode="cover"
                                 source={{ uri: crop.image }}
                               />

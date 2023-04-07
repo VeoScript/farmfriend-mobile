@@ -47,11 +47,11 @@ const HomeScreen = (): JSX.Element => {
           <View style={tw`relative my-1`}>
             {account?.image
               ? <Image
-                  style={tw`rounded-full w-[10rem] h-[10rem] bg-olive-semi-light`}
+                  style={tw`rounded-full w-[10rem] h-[10rem] bg-olive bg-opacity-50`}
                   resizeMode="cover"
                   source={{ uri: account.image }}
                 />
-              : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-full bg-olive-semi-light`}>
+              : <View style={tw`relative flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-full bg-olive bg-opacity-50`}>
                   <FeatherIcon
                     name="user"
                     size={90}

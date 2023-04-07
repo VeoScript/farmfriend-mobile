@@ -3,6 +3,7 @@ import TopBar from '../components/TopBar'
 import tw from '../styles/tailwind'
 import { SafeAreaView, ScrollView, ImageBackground } from 'react-native'
 import { useRoute } from '@react-navigation/native'
+import Copyright from '../components/Copyright'
 
 interface IProps {
   title: string
@@ -33,10 +34,13 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
           ? <>
               {children}
             </>
-          : <ScrollView style={tw`flex-1 w-full`} keyboardShouldPersistTaps="always">
+          : <ScrollView style={tw`relative flex-1 w-full`} keyboardShouldPersistTaps="always">
               {children}
             </ScrollView>
         }
+        {route.name === 'HomeScreen' && (
+          <Copyright />
+        )}
       </ImageBackground>
     </SafeAreaView>
   )

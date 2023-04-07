@@ -152,12 +152,12 @@ const EditCropsScreen = () => {
             <View style={tw`relative my-1`}>
               {photo
                 ? <Image
-                    style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive-semi-light`}
+                    style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive bg-opacity-50`}
                     resizeMode="cover"
                     source={{ uri: photo[0].uri }}
                   />
                 : <Image
-                    style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive-semi-light`}
+                    style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive bg-opacity-50`}
                     resizeMode="cover"
                     source={{ uri: route.params?.cropPhoto }}
                   />

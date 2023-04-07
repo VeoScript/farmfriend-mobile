@@ -1,4 +1,5 @@
 import React from 'react'
+import Copyright from '../components/Copyright'
 import tw from '../styles/tailwind'
 import { SafeAreaView, ScrollView, ImageBackground, View, Image } from 'react-native'
 import { useRoute } from '@react-navigation/native'
@@ -28,17 +29,19 @@ const AuthLayout: AuthLayoutProps = ({ children }) => {
               source={require('../assets/images/farmfriend-logo.png')}
             />
             {children}
+            <Copyright />
           </View>
         )}
         {router.name === 'CreateAccountScreen' && (
           <ScrollView style={tw`flex-1`} keyboardShouldPersistTaps="handled">
-            <View style={tw`relative flex-col items-center justify-start w-full px-5`}>
+            <View style={tw`relative flex-col items-center justify-start w-full px-5 pb-10`}>
               <Image
                 style={tw`w-[12rem] h-[12rem]`}
                 resizeMode="cover"
                 source={require('../assets/images/farmfriend-logo.png')}
               />
               {children}
+              <Copyright />
             </View>
           </ScrollView>
         )}

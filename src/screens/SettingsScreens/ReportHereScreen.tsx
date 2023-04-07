@@ -38,7 +38,7 @@ const ReportHereScreen = () => {
         setIsLoading(false)
       },
       onSuccess: () => {
-        Toast('Report created successfully')
+        Toast('Thanks for your report')
         setIsLoading(false)
         useGoBack()
       }
