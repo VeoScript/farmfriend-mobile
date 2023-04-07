@@ -188,7 +188,7 @@ const AddCropsScreen = () => {
               placeholder="Required Temperature"
               value={temperature}
               onChangeText={(value: string) => {
-                setTemperature(value)
+                setTemperature(value.replace(/\D/g, ''))
                 setTemperatureError('')
               }}
             />
