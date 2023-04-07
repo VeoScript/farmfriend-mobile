@@ -52,6 +52,8 @@ const App = (): JSX.Element => {
                 <Stack.Screen name="SearchCropsScreen" component={screen.SearchCropsScreen} />
                 <Stack.Screen name="UserFarmersScreen" component={screen.UserFarmersScreen} />
                 <Stack.Screen name="UserLguNgoScreen" component={screen.UserLguNgoScreen} />
+                <Stack.Screen name="ViewCropsScreen" component={screen.ViewCropsScreen} />
+                <Stack.Screen name="ViewProgramsScreen" component={screen.ViewProgramsScreen} />
                 <Stack.Screen name="NotificationsScreen" component={screen.NotificationsScreen} />
                 <Stack.Screen name="ViewRatesScreen" component={screen.ViewRatesScreen} />
                 <Stack.Screen name="ViewReportsScreen" component={screen.ViewReportsScreen} />

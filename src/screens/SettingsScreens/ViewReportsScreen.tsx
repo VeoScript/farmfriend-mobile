@@ -2,19 +2,29 @@ import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import moment from 'moment'
 import tw from '../../styles/tailwind'
+import { FeatherIcon } from '../../utils/Icons'
 import { ActivityIndicator, FlatList, Text, TextInput, View } from 'react-native'
-import { useNavigate } from '../../config/RootNavigation'
+import { useRoute } from '@react-navigation/native'
+import { useGoBack, useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { useGetReports } from '../../helpers/tanstack/queries/reports'
-import { FeatherIcon } from '../../utils/Icons'
 
 const ViewReportsScreen = () => {
 
-  const [search, setSearch] = React.useState<string>('')
+  const route = useRoute()
 
-  useBackHandler(() => {
-    useNavigate('HomeScreen')
-  })
+  const [search, setSearch] = React.useState<string>('')
+  
+  if (route.params) {
+    useBackHandler(() => {
+      useGoBack()
+    })
+  } else {
+    useBackHandler(() => {
+      useNavigate('HomeScreen')
+    })
+  }
+
   const {
     data: reports,
     isLoading,

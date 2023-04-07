@@ -12,6 +12,8 @@ import SearchProgramsScreen from '../screens/MajorScreens/SearchProgramsScreen'
 import SearchCropsScreen from '../screens/MajorScreens/SearchCropsScreen'
 import UserFarmersScreen from '../screens/MajorScreens/UserFarmersScreen'
 import UserLguNgoScreen from '../screens/MajorScreens/UserLguNgoScreen'
+import ViewCropsScreen from '../screens/MajorScreens/ViewCropsScreen'
+import ViewProgramsScreen from '../screens/MajorScreens/ViewProgramsScreen'
 
 // Settings Screens
 import NotificationsScreen from '../screens/SettingsScreens/NotificationsScreen'
@@ -34,6 +36,8 @@ export {
   SearchCropsScreen,
   UserFarmersScreen,
   UserLguNgoScreen,
+  ViewCropsScreen,
+  ViewProgramsScreen,
   NotificationsScreen,
   ViewRatesScreen,
   ViewReportsScreen,

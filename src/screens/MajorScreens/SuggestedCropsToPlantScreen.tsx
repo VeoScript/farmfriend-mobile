@@ -7,6 +7,7 @@ import { FeatherIcon } from '../../utils/Icons'
 import { View, Image, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import { useGetWeather } from '../../helpers/hooks/useGetWeather'
 import { useGetSuggestedCrops } from '../../helpers/tanstack/queries/crops'
+import { useNavigate } from '../../config/RootNavigation'
 
 const SuggestedCropsToPlantScreen = () => {
 
@@ -101,10 +102,18 @@ const SuggestedCropsToPlantScreen = () => {
                       </View>
                     </View>
                   : <>
-                      {suggestedCrops.map((crop: { image: string, name: string, description: string, temperature: string }, i: number) => (
+                      {suggestedCrops.map((crop: { id: string, image: string, name: string, description: string, temperature: string }, i: number) => (
                         <React.Fragment key={i}>
                           {(Number(crop.temperature) >= Math.min(currentTemp, currentAverageTemp) && Number(crop.temperature) <= Math.max(currentTemp, currentAverageTemp)) && (
-                            <View style={tw`flex-row w-full p-3 overflow-hidden border-b border-olive border-opacity-40`}>
+                            <TouchableOpacity
+                              activeOpacity={0.7}
+                              style={tw`flex-row w-full p-3 overflow-hidden border-b border-olive border-opacity-40`}
+                              onPress={() => {
+                                useNavigate('ViewCropsScreen', {
+                                  id: crop.id
+                                })
+                              }}
+                            >
                               <Image
                                 style={tw`rounded-xl w-[3rem] h-[3rem] bg-olive bg-opacity-50`}
                                 resizeMode="cover"
@@ -113,9 +122,9 @@ const SuggestedCropsToPlantScreen = () => {
                               <View style={tw`flex-1 flex-col w-full ml-2 overflow-hidden`}>
                                 <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ crop.name }</Text>
                                 <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ crop.temperature }°</Text></Text>
-                                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
+                                <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
                               </View>
-                            </View>
+                            </TouchableOpacity>
                           )}
                         </React.Fragment>
                       ))}

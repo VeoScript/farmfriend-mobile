@@ -5,6 +5,7 @@ import { Modal, Pressable, View, Text, TouchableOpacity } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { settingsLinks } from '../../config/Paths'
 import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
+import { useGetUnreadNotifications } from '../../helpers/tanstack/queries/notifications'
 
 interface IProps {
   modalVisible: boolean
@@ -16,6 +17,8 @@ type SettingsProps = (props: IProps) => JSX.Element
 const SettingsModal: SettingsProps = ({ modalVisible, setModalVisible }) => {
 
   const account: any = useGetUserAccount()
+
+  const { data: unread, isLoading } = useGetUnreadNotifications(account.account_type)
 
   return (
     <Modal
@@ -49,7 +52,7 @@ const SettingsModal: SettingsProps = ({ modalVisible, setModalVisible }) => {
               {setting.access.some((settingAccess: string) => settingAccess === account?.account_type) && (
                 <TouchableOpacity
                   activeOpacity={0.5}
-                  style={tw`flex-row items-center justify-start w-full border-t border-olive-semi-light p-3`}
+                  style={tw`relative flex-row items-center justify-start w-full border-t border-olive-semi-light p-3`}
                   onPress={() => {
                     setModalVisible(false)
                     useNavigate(setting.route)
@@ -57,6 +60,11 @@ const SettingsModal: SettingsProps = ({ modalVisible, setModalVisible }) => {
                 >
                   <OcticonIcon size={20} name={setting.icon} color="#333333" />
                   <Text style={tw`ml-2 font-poppins text-sm text-olive`}>{ setting.name }</Text>
+                  {(setting.name === 'Notifications' && !isLoading && unread !== 0) && (
+                    <View style={tw`absolute right-3 flex-row items-center justify-center w-5 h-5 rounded-full bg-yellow-600`}>
+                      <Text style={tw`font-poppins text-xs text-white`}>{ unread }</Text>
+                    </View>
+                  )}
                 </TouchableOpacity>
               )}
             </React.Fragment>
