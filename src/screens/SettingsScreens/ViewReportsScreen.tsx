@@ -102,6 +102,7 @@ const ViewReportsScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={reports.pages.map((page: any) => page.reports).flat()}
               renderItem={renderData}

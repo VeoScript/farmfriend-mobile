@@ -93,6 +93,7 @@ const SearchProgramsScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={programs.pages.map((page: any) => page.programs).flat()}
               renderItem={renderData}

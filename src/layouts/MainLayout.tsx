@@ -35,7 +35,7 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
           ? <>
               {children}
             </>
-          : <ScrollView style={tw`relative flex-1 w-full`} keyboardShouldPersistTaps="always">
+          : <ScrollView style={tw`relative flex-1 w-full`} keyboardShouldPersistTaps="handled">
               {children}
             </ScrollView>
         }

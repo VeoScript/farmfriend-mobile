@@ -117,6 +117,7 @@ const UserLguNgoScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={users.pages.map((page: any) => page.users).flat()}
               renderItem={renderData}
