@@ -75,11 +75,11 @@ const UserLguNgoScreen = () => {
         >
           {item.item.image
             ? <Image
-                style={tw`rounded-full w-[3rem] h-[3rem] bg-olive`}
+                style={tw`rounded-full w-[3rem] h-[3rem] bg-olive bg-opacity-50`}
                 resizeMode="cover"
                 source={{ uri: item.item.image }}
               />
-            : <View style={tw`flex-row items-center justify-center w-[3rem] h-[3rem] p-2 overflow-hidden rounded-full bg-olive`}>
+            : <View style={tw`flex-row items-center justify-center w-[3rem] h-[3rem] p-2 overflow-hidden rounded-full bg-olive bg-opacity-50`}>
                 <FeatherIcon
                   name="user"
                   size={20}

@@ -131,11 +131,11 @@ const AddCropsScreen = () => {
             <View style={tw`relative my-1`}>
               {photo
                 ? <Image
-                    style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive-semi-light`}
+                    style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive bg-opacity-50`}
                     resizeMode="cover"
                     source={{ uri: photo[0].uri }}
                   />
-                : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-xl bg-olive-semi-light`}>
+                : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-xl bg-olive bg-opacity-50`}>
                     <FeatherIcon
                       name="image"
                       size={90}

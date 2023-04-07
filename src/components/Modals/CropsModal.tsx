@@ -47,11 +47,11 @@ const CropsModal: CropsModalProps = ({ id, image, name, description, temperature
           <View style={tw`flex-col items-center w-full px-3 pb-3`}>
             {image
               ? <Image
-                  style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive`}
+                  style={tw`rounded-xl w-[10rem] h-[10rem] bg-olive bg-opacity-50`}
                   resizeMode="cover"
                   source={{ uri: image }}
                 />
-              : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-full bg-olive`}>
+              : <View style={tw`flex-row items-center justify-center w-[10rem] h-[10rem] p-2 overflow-hidden rounded-full bg-olive bg-opacity-50`}>
                   <FeatherIcon
                     name="user"
                     size={90}
