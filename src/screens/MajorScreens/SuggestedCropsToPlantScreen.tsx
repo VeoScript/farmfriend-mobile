@@ -6,7 +6,6 @@ import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
 import { View, Image, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import { useGetWeather } from '../../helpers/hooks/useGetWeather'
-import { requestLocationPermission } from '../../helpers/hooks/useCheckLocationPermission'
 import { useGetSuggestedCrops } from '../../helpers/tanstack/queries/crops'
 
 const SuggestedCropsToPlantScreen = () => {
@@ -30,7 +29,6 @@ const SuggestedCropsToPlantScreen = () => {
 
   React.useEffect(() => {
     handleFetchWeather()
-    requestLocationPermission()
   }, [])
 
   if (!forecast || isLoading) return <LoadingScreen />

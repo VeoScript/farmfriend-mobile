@@ -1,8 +1,8 @@
 import React from 'react'
 import { Keyboard } from 'react-native'
 
-export const useCheckKeyboard = () => {
-  const [keyboardIsVisible, setKeyboardIsVisible] = React.useState<any>(null)
+export const useCheckKeyboard = (): boolean => {
+  const [keyboardIsVisible, setKeyboardIsVisible] = React.useState<boolean>(false)
 
   // check if the keyboard is visible
   React.useEffect(() => {
