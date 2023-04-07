@@ -50,7 +50,7 @@ const CheckWeatherScreen = () => {
               <Image
                 style={tw`rounded-full w-[2rem] h-[2rem]`}
                 resizeMode="cover"
-                source={{ uri: `http:${forecast?.current.condition.icon}` }}
+                source={{ uri: `https:${forecast?.current.condition.icon}` }}
               />
               <Text style={tw`font-poppins text-[3rem] text-olive-dark`}>{ Math.round(forecast?.current.temp_c) }° C</Text>
             </View>
@@ -83,7 +83,7 @@ const CheckWeatherScreen = () => {
                 <Image
                   style={tw`rounded-full w-[2rem] h-[2rem]`}
                   resizeMode="cover"
-                  source={{ uri: `http:${weather?.day.condition.icon}` }}
+                  source={{ uri: `https:${weather?.day.condition.icon}` }}
                 />
                 <Text style={tw`font-poppins text-xs text-left text-olive`}>{ weather?.day.condition.text }</Text>
               </View>

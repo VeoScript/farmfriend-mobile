@@ -47,7 +47,7 @@ const SuggestedCropsToPlantScreen = () => {
               <Image
                 style={tw`rounded-full w-[2rem] h-[2rem] mb-1`}
                 resizeMode="cover"
-                source={{ uri: `http:${forecast?.current.condition.icon}` }}
+                source={{ uri: `https:${forecast?.current.condition.icon}` }}
               />
               <Text style={tw`font-poppins text-2xl text-olive-dark`}>{ Math.round(forecast?.current.temp_c) }° C / <Text style={tw`font-poppins text-xl text-olive`}>{ Math.round(forecast?.current.feelslike_c) }° C</Text></Text>
             </View>
