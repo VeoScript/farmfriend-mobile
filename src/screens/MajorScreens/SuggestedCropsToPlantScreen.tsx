@@ -42,13 +42,13 @@ const SuggestedCropsToPlantScreen = () => {
       <View style={tw`flex-1 flex-col w-full py-3`}>
         <View style={tw`flex-col w-full px-5 border-b border-olive border-opacity-40`}>
           <View style={tw`flex-row items-center w-full my-1`}>
-            <View style={tw`flex-1 flex-col items-start w-full mr-2`}>
+            <View style={tw`flex-1 flex-col items-start w-full mr-2 mb-2`}>
               <Image
-                style={tw`rounded-full w-[2rem] h-[2rem]`}
+                style={tw`rounded-full w-[2rem] h-[2rem] mb-1`}
                 resizeMode="cover"
                 source={{ uri: `http:${forecast?.current.condition.icon}` }}
               />
-              <Text style={tw`font-poppins text-[2rem] text-olive-dark`}>{ Math.round(forecast?.current.temp_c) }° C</Text>
+              <Text style={tw`font-poppins text-2xl text-olive-dark`}>{ Math.round(forecast?.current.temp_c) }° C / <Text style={tw`font-poppins text-xl text-olive`}>{ Math.round(forecast?.current.feelslike_c) }° C</Text></Text>
             </View>
             <View style={tw`flex-1 flex-col items-end w-full ml-2`}>
               <Text style={tw`font-poppins text-base text-right text-olive capitalize`}>{ forecast?.current.condition.text }</Text>
@@ -112,6 +112,7 @@ const SuggestedCropsToPlantScreen = () => {
                               />
                               <View style={tw`flex-1 flex-col w-full ml-2 overflow-hidden`}>
                                 <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ crop.name }</Text>
+                                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ crop.temperature }°</Text></Text>
                                 <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
                               </View>
                             </View>
