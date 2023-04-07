@@ -16,7 +16,7 @@ const ViewReportsScreen = () => {
     useNavigate('HomeScreen')
   })
   const {
-    data: users,
+    data: reports,
     isLoading,
     hasNextPage,
     fetchNextPage,
@@ -55,7 +55,7 @@ const ViewReportsScreen = () => {
   const renderData = (item: any) => {
     return (
       <View style={tw`flex-col w-full`}>
-        <View style={tw`flex-row w-full p-3 border-b border-olive-semi-light`}>
+        <View style={tw`flex-row w-full p-3 border-b border-olive border-opacity-40`}>
           <View style={tw`flex-col ml-3`}>
             <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.description }</Text>
             <Text style={tw`my-0.5 font-poppins text-sm text-olive`}>by { item.item.type.replace(/_/g, "/") }</Text>
@@ -87,7 +87,7 @@ const ViewReportsScreen = () => {
             </View>
           : <FlatList
               ListEmptyComponent={listIsEmpty}
-              data={users.pages.map((page: any) => page.reports).flat()}
+              data={reports.pages.map((page: any) => page.reports).flat()}
               renderItem={renderData}
               keyExtractor={itemKeyExtractor}
               onEndReached={loadMore}

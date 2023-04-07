@@ -27,7 +27,8 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
           route.name === 'SearchCropsScreen' ||
           route.name === 'UserFarmersScreen' ||
           route.name === 'UserLguNgoScreen' ||
-          route.name === 'ViewReportsScreen'
+          route.name === 'ViewReportsScreen' ||
+          route.name === 'ViewRatesScreen'
         )
           ? <>
               {children}
