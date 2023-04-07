@@ -123,6 +123,7 @@ const NotificationsScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={notifications.pages.map((page: any) => page.notifications).flat()}
               renderItem={renderData}

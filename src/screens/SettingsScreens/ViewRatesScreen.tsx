@@ -117,6 +117,7 @@ const ViewRatesScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={rates.pages.map((page: any) => page.rates).flat()}
               renderItem={renderData}
