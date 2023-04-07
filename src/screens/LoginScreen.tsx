@@ -100,12 +100,13 @@ const LoginScreen = (): JSX.Element => {
         </TouchableOpacity>
       </View>
       <View style={tw`flex-col items-center w-full my-3`}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => console.log('Forgot Password')}
         >
           <Text style={tw`font-poppins text-xs text-olive`}>Forgot your password?</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <Text style={tw`font-poppins text-xs text-olive`}>Don't have an account?</Text>
         <TouchableOpacity
           activeOpacity={0.7}
           style={tw`flex-row items-center justify-center w-full my-5 px-2 py-3 rounded-full bg-olive`}
