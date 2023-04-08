@@ -17,7 +17,8 @@ export const useLoginMutation = () => {
       onSuccess: async (data) => {
         const cookies: any = data.headers['set-cookie']
         await AsyncStorage.setItem('COOKIES', cookies[0])
-        queryClient.invalidateQueries(['user'])
+        
+        queryClient.resetQueries()
         useNavigate('HomeScreen')
       }
     }
