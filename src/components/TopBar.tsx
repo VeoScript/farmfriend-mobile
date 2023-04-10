@@ -5,7 +5,11 @@ import { OcticonIcon } from '../utils/Icons'
 import { View, Text, TouchableOpacity, Alert, Image } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { useLogoutMutation } from '../helpers/tanstack/mutations/auth'
-import { editAccountStore } from '../helpers/zustand/store'
+import {
+  editAccountStore,
+  createCropStore,
+  createProgramStore,
+} from '../helpers/zustand/store'
 
 interface IProps {
   title: string
@@ -18,6 +22,8 @@ const TopBar: TopBarProps = ({ title }) => {
   const route = useRoute()
 
   const { setDefaultAccountInfo, setDefaultChangePassword } = editAccountStore()
+  const { setDefault: setDefaultCrop } = createCropStore()
+  const { setDefault: setDefaultProgram } = createProgramStore()
 
   const [settingsModalVisible, setSettingsModalVisible] = React.useState<boolean>(false)
 
@@ -26,6 +32,8 @@ const TopBar: TopBarProps = ({ title }) => {
   const handleLogout = async () => {
     setDefaultAccountInfo()
     setDefaultChangePassword()
+    setDefaultCrop()
+    setDefaultProgram()
     await logoutMutation.mutateAsync()
   }
 
