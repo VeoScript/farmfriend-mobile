@@ -57,7 +57,7 @@ export const settingsLinks = [
     'route': 'NotificationsScreen'
   },
   {
-    'access': ['ADMIN'],
+    'access': ['ADMIN', 'LGU_NGO', 'FARMERS'],
     'name': 'View Rates',
     'icon': 'star',
     'route': 'ViewRatesScreen'
