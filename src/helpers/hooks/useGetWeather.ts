@@ -38,7 +38,7 @@ export async function useGetWeather(props: { options: IProps }): Promise<void> {
         position => {
           const { latitude, longitude } = position.coords
 
-          fetch(`${BASE_URL}?key=${WEATHER_API_KEY}&q=${`${latitude},${longitude}`}&days=6&aqi=yes`)
+          fetch(`${BASE_URL}?key=${WEATHER_API_KEY}&q=${`${latitude},${longitude}`}&days=7&aqi=no&alerts=no`)
             .then(response => response.json())
             .then(data => {
               setIsLoading(false)
