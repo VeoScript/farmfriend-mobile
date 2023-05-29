@@ -6,9 +6,12 @@ import { FeatherIcon } from '../../utils/Icons'
 import { ActivityIndicator, FlatList, Image, Text, TextInput, View } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
+import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
 import { useGetRates } from '../../helpers/tanstack/queries/rates'
 
 const ViewRatesScreen = () => {
+
+  const account = useGetUserAccount()
 
   const [search, setSearch] = React.useState<string>('')
 
@@ -74,7 +77,12 @@ const ViewRatesScreen = () => {
                   </View>
                 }
                 <View style={tw`flex-col w-full`}>
-                  <Text style={tw`ml-2 font-poppins-bold text-sm text-olive-dark`}>{ item.item.user.first_name + ' ' + item.item.user.last_name }</Text>
+                  <Text style={tw`ml-2 font-poppins-bold text-sm text-olive-dark`}>
+                    {account.account_type === 'ADMIN'
+                      ? `${ item.item.user.first_name + ' ' + item.item.user.last_name }`
+                      : `${ item.item.user.first_name.substring(0, 3) + "*".repeat(item.item.user.first_name.length - 3) + ' ' + item.item.user.last_name.substring(0, 3) + "*".repeat(item.item.user.first_name.length - 3) }`
+                    }
+                  </Text>
                   <Text style={tw`ml-2 font-poppins text-xs text-olive`}>{ item.item.user.account_type?.replace(/_/g, "/") }</Text>
                 </View>
               </View>

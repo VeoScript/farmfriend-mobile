@@ -1,5 +1,6 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
+import DeleteAccountModal from '../../components/Modals/DeleteAccountModal'
 import tw from '../../styles/tailwind'
 import { Toast } from '../../utils/Toast'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
@@ -8,7 +9,6 @@ import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { editAccountStore } from '../../helpers/zustand/store'
 import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
 import { useUpdateAccountInfoMutation, useChangePasswordMutation } from '../../helpers/tanstack/mutations/user'
-import DeleteAccountModal from '../../components/Modals/DeleteAccountModal'
 
 const EditAccountScreen = () => {
 
