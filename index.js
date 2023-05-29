@@ -5,6 +5,7 @@
 import {AppRegistry, Text, TextInput} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DEV, API_URL_DEVELOPMENT, API_URL_PRODUCTION } from '@env'
 import io from 'socket.io-client'
@@ -40,7 +41,9 @@ socket.on('new_notification', async (data) => {
     importance: AndroidImportance.HIGH,
   })
 
-  if (data.notification_to !== data.account_type) {
+  const account_type = await AsyncStorage.getItem('ACCOUNT_TYPE')
+
+  if (data.notification_to === account_type) {
     // Display a notification
     await notifee.displayNotification({
       title: data.title,
