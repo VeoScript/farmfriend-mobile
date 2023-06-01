@@ -35,8 +35,8 @@ const SuggestedCropsToPlantScreen = () => {
   if (!forecast || isLoading) return <LoadingScreen />
   if (error || isErrorSuggestedCrops) return <ErrorScreen error={error} />
 
-  const currentTemp = Math.round(forecast?.current.temp_c)
-  const currentAverageTemp = Math.round(forecast?.current.feelslike_c)
+  const currentTemp = Math.round(forecast?.current.temp_c) - 3
+  const currentAverageTemp = Math.round(forecast?.current.feelslike_c) + 3
 
   return (
     <MainLayout title="Suggested Crops">
