@@ -3,21 +3,38 @@ import MainLayout from '../../layouts/MainLayout'
 import LoadingScreen from '../../components/SplashScreens/LoadingScreen'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { useNavigate } from '../../config/RootNavigation'
 import { useGetUserAccount } from '../../helpers/hooks/useGetUserAccount'
 import { useGetCrop } from '../../helpers/tanstack/queries/crops'
+import { useDeleteCropMutation } from '../../helpers/tanstack/mutations/crops'
 
 const ViewCropsScreen = () => {
 
   const route: any = useRoute()
 
+  const [isDeleteLoading, setIsDeleteLoading] = React.useState<boolean>(false)
+
   const account = useGetUserAccount()
 
   const { data: crop, isLoading } = useGetCrop(route.params?.id)
 
-  if (isLoading) return <LoadingScreen />
+  const deleteCropMutation = useDeleteCropMutation(route.params?.id)
+
+  if (isLoading || isDeleteLoading) return <LoadingScreen />
+
+  const handleDeleteCrop = async () => {
+    setIsDeleteLoading(true)
+    await deleteCropMutation.mutateAsync(undefined, {
+      onError: () => {
+        setIsDeleteLoading(false)
+      },
+      onSuccess: () => {
+        setIsDeleteLoading(false)
+      }
+    })
+  }
 
   return (
     <MainLayout title={crop.name}>
@@ -28,19 +45,47 @@ const ViewCropsScreen = () => {
           source={{ uri: crop.image }}
         />
         {account.account_type === 'ADMIN' && (
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={tw`absolute top-3 right-3 w-auto rounded-full p-2 bg-white bg-opacity-50`}
-            onPress={() => useNavigate('EditCropsScreen', {
-              cropId: crop.id,
-              cropPhoto: crop.image,
-              cropName: crop.name,
-              cropDescription: crop.description,
-              cropTemperature: crop.temperature
-            })}
-          >
-            <FeatherIcon size={18} name="edit" color="#333333" />
-          </TouchableOpacity>
+          <View style={tw`absolute top-3 right-3 flex-row items-center w-auto`}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={tw`rounded-full mx-0.5 p-2 bg-white bg-opacity-50`}
+              onPress={() => useNavigate('EditCropsScreen', {
+                cropId: crop.id,
+                cropPhoto: crop.image,
+                cropName: crop.name,
+                cropDescription: crop.description,
+                cropTemperature: crop.temperature
+              })}
+            >
+              <FeatherIcon size={18} name="edit" color="#333333" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={tw`rounded-full mx-0.5 p-2 bg-white bg-opacity-50`}
+              onPress={() => {
+                Alert.alert(
+                  '',
+                  `Are you sure you want to delete this crop ${crop.name}?`,
+                  [
+                    {
+                      text: 'No',
+                      style: "cancel"
+                    },
+                    {
+                      text: 'Yes',
+                      style: "default",
+                      onPress: handleDeleteCrop
+                    }
+                  ],
+                  {
+                    cancelable: true
+                  }
+                )
+              }}
+            >
+              <FeatherIcon size={18} name="trash" color="#333333" />
+            </TouchableOpacity>
+          </View>
         )}
         <View style={tw`flex-col items-center w-full my-10`}>
           <View style={tw`flex-col items-center my-3`}>
