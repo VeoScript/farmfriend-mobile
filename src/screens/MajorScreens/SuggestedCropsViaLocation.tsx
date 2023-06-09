@@ -2,15 +2,18 @@ import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import ErrorScreen from '../../components/SplashScreens/ErrorScreen'
 import LoadingScreen from '../../components/SplashScreens/LoadingScreen'
+import Dropdown from '../../components/Dropdown'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
 import { View, Image, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { provinces } from '../../shared/mocks/provinces'
 import { useGetWeather } from '../../helpers/hooks/useGetWeather'
 import { useGetSuggestedCrops } from '../../helpers/tanstack/queries/crops'
 import { useNavigate } from '../../config/RootNavigation'
 
-const SuggestedCropsToPlantScreen = () => {
+const SuggestedCropsViaLocation = () => {
 
+  const [selectedLocation, setSelectedLocation] = React.useState<string>('')
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [error, setError] = React.useState<string>('')
   const [search, setSearch] = React.useState<string>('')
@@ -21,6 +24,7 @@ const SuggestedCropsToPlantScreen = () => {
   const handleFetchWeather = () => {
     useGetWeather({
       options: {
+        location: selectedLocation,
         setIsLoading: setIsLoading,
         setError: setError,
         setForecast: setForecast
@@ -30,7 +34,7 @@ const SuggestedCropsToPlantScreen = () => {
 
   React.useEffect(() => {
     handleFetchWeather()
-  }, [])
+  }, [selectedLocation])
 
   if (!forecast || isLoading) return <LoadingScreen />
   if (error || isErrorSuggestedCrops) return <ErrorScreen error={error} />
@@ -41,7 +45,7 @@ const SuggestedCropsToPlantScreen = () => {
   const currentAverageTemp = Math.round(forecast?.current.feelslike_c) + maximumRangeTemp
 
   return (
-    <MainLayout title="Suggested Crops">
+    <MainLayout title="Province Suggested Crops">
       <View style={tw`flex-1 flex-col w-full py-3`}>
         <View style={tw`flex-col w-full px-5 border-b border-olive border-opacity-40`}>
           <View style={tw`flex-row items-center w-full my-1`}>
@@ -74,6 +78,23 @@ const SuggestedCropsToPlantScreen = () => {
             >
               <FeatherIcon size={18} name="refresh-cw" color="#333333" />
             </TouchableOpacity>
+          </View>
+          <View style={tw`flex-row items-center justify-between w-full p-3`}>
+            <Dropdown
+              defaultButtonText={selectedLocation ? selectedLocation : 'Select Province'}
+              defaultValue={selectedLocation}
+              data={provinces}
+              onSelect={(selectedItem: { name: string }) => {
+                setSelectedLocation(selectedItem.name)
+              }}
+              buttonTextAfterSelection={(selectedItem: { name: string }) => {
+                return selectedItem.name
+              }}
+              rowTextForSelection={(item: { name: string }) => {
+                return item.name
+              }}
+              disabled={false}
+            />
           </View>
           <View style={tw`flex-col w-full px-3 mb-1`}>
             <View style={tw`flex-row items-center w-full border-b border-olive`}>
@@ -140,4 +161,4 @@ const SuggestedCropsToPlantScreen = () => {
   )
 }
 
-export default SuggestedCropsToPlantScreen
+export default SuggestedCropsViaLocation

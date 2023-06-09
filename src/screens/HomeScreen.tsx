@@ -2,6 +2,7 @@ import React from 'react'
 import MainLayout from '../layouts/MainLayout'
 import LoadingScreen from '../components/SplashScreens/LoadingScreen'
 import ProfileImageUpload from '../components/Uploads/ProfileImageUpload'
+import Copyright from '../components/Copyright'
 import tw from '../styles/tailwind'
 import { FeatherIcon } from '../utils/Icons'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
@@ -42,7 +43,7 @@ const HomeScreen = (): JSX.Element => {
 
   return (
     <MainLayout title="Profile">
-      <View style={tw`flex-1 flex-col w-full p-3`}>
+      <View style={tw`flex-1 flex-col w-full px-5 pb-10`}>
         <View style={tw`flex-col items-center w-full p-3`}>
           <View style={tw`relative my-1`}>
             {account?.image
@@ -75,7 +76,7 @@ const HomeScreen = (): JSX.Element => {
           </View>
         </View>
         <View style={tw`flex-col items-center justify-center w-full`}>
-          <View style={tw`flex-row flex-wrap w-[18rem] my-2`}>
+          <View style={tw`flex-row items-center justify-center flex-wrap w-[18rem] my-2`}>
             {links.map((module: { access: any[], name: string, icon: string, route: string }, i: number) => (
               <React.Fragment key={i}>
                 {(module.access.some((screenAccess: string) => screenAccess === account.account_type)) && (
@@ -93,6 +94,7 @@ const HomeScreen = (): JSX.Element => {
           </View>
         </View>
       </View>
+      <Copyright />
       <ProfileImageUpload
         userId={account.id}
         modalVisible={isPhotoModal}

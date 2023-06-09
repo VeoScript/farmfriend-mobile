@@ -12,6 +12,12 @@ export const links = [
     'route': 'SuggestedCropsToPlantScreen'
   },
   {
+    'access': ['FARMERS', 'LGU_NGO'],
+    'name': 'Province Suggested Crops',
+    'icon': 'map-pin',
+    'route': 'SuggestedCropsViaLocation'
+  },
+  {
     'access': ['LGU_NGO'],
     'name': 'Add Programs',
     'icon': 'plus',

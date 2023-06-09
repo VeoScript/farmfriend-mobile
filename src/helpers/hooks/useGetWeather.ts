@@ -4,6 +4,7 @@ import { Toast } from '../../utils/Toast'
 import { WEATHER_API_KEY } from '@env'
 
 interface IProps {
+  location?: string
   setIsLoading: (value: boolean) => void
   setError: (value: string) => void
   setForecast: (data: any) => void
@@ -13,6 +14,7 @@ const BASE_URL = 'https://api.weatherapi.com/v1/forecast.json'
 
 export async function useGetWeather(props: { options: IProps }): Promise<void> {
   const {
+    location,
     setIsLoading,
     setForecast,
     setError
@@ -38,16 +40,17 @@ export async function useGetWeather(props: { options: IProps }): Promise<void> {
         position => {
           const { latitude, longitude } = position.coords
 
-          fetch(`${BASE_URL}?key=${WEATHER_API_KEY}&q=${`${latitude},${longitude}`}&days=7&aqi=no&alerts=no`)
-            .then(response => response.json())
-            .then(data => {
-              setIsLoading(false)
-              setForecast(data)
-            })
-            .catch(error => {
-              setIsLoading(false)
-              setError(error.message)
-            })
+          // kung walang location mag base siya sa LATITUDE ug LONGITUDE...
+          fetch(`${BASE_URL}?key=${WEATHER_API_KEY}&q=${location ? `${location}` : `${latitude},${longitude}`}&days=7&aqi=no&alerts=no`)
+          .then(response => response.json())
+          .then(data => {
+            setIsLoading(false)
+            setForecast(data)
+          })
+          .catch(error => {
+            setIsLoading(false)
+            setError(error.message)
+          })
         },
         error => {
           setIsLoading(false)
