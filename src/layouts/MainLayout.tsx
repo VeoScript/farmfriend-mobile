@@ -1,6 +1,5 @@
 import React from 'react'
 import TopBar from '../components/TopBar'
-import Copyright from '../components/Copyright'
 import tw from '../styles/tailwind'
 import { SafeAreaView, ScrollView, ImageBackground } from 'react-native'
 import { useRoute } from '@react-navigation/native'
@@ -35,13 +34,13 @@ const MainLayout: MainLayoutProps = ({ title, children }) => {
           ? <>
               {children}
             </>
-          : <ScrollView style={tw`relative flex-1 w-full`} keyboardShouldPersistTaps="handled">
+          : <ScrollView
+              style={tw`relative flex-1 w-full`}
+              keyboardShouldPersistTaps="handled"
+            >
               {children}
             </ScrollView>
         }
-        {route.name === 'HomeScreen' && (
-          <Copyright />
-        )}
       </ImageBackground>
     </SafeAreaView>
   )

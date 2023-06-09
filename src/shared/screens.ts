@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 // Major Screens
 import CheckWeatherScreen from '../screens/MajorScreens/CheckWeatherScreen'
 import SuggestedCropsToPlantScreen from '../screens/MajorScreens/SuggestedCropsToPlantScreen'
+import SuggestedCropsViaLocation from '../screens/MajorScreens/SuggestedCropsViaLocation'
 import AddProgramsScreen from '../screens/MajorScreens/AddProgramsScreen'
 import AddCropsScreen from '../screens/MajorScreens/AddCropsScreen'
 import SearchProgramsScreen from '../screens/MajorScreens/SearchProgramsScreen'
@@ -30,6 +31,7 @@ export {
   HomeScreen,
   CheckWeatherScreen,
   SuggestedCropsToPlantScreen,
+  SuggestedCropsViaLocation,
   AddProgramsScreen,
   AddCropsScreen,
   SearchProgramsScreen,
