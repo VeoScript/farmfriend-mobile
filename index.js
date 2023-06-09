@@ -28,6 +28,34 @@ socket.on('connect', () => {
   console.log('Connected to socket.io server')
 })
 
+socket.on('automated_notification', async (data) => {
+  console.log('Received automated notification:', data)
+
+  // Request permissions (required for iOS)
+  await notifee.requestPermission()
+
+  // Create a channel (required for Android)
+  const channelId = await notifee.createChannel({
+    id: data.id,
+    name: 'FarmFriend Push Notification',
+    importance: AndroidImportance.HIGH,
+  })
+
+   // Display a notification
+   await notifee.displayNotification({
+    title: data.title,
+    body: data.message,
+    android: {
+      smallIcon: 'ic_launcher', 
+      channelId,
+      // pressAction is needed if you want the notification to open the app when pressed
+      pressAction: {
+        id: 'default',
+      }
+    },
+  })
+})
+
 socket.on('new_notification', async (data) => {
   console.log('Received new notification:', data)
 
