@@ -214,9 +214,11 @@ export const createCropStore = create<type.CreateCropProps>(set => ({
     name: '',
     description: '',
     temperature: '',
+    max_temperature: '',
     photo_error: '',
     name_error: '',
     description_error: '',
     temperature_error: '',
+    max_temperature_error: '',
   }))
 }))

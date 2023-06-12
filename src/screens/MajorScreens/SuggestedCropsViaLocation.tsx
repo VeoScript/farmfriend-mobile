@@ -38,9 +38,10 @@ const SuggestedCropsViaLocation = () => {
 
   if (!forecast || isLoading) return <LoadingScreen />
   if (error || isErrorSuggestedCrops) return <ErrorScreen error={error} />
+  if (forecast?.current === undefined) return <ErrorScreen error="No matching location found." />
 
-  const currentTemperature = Math.round(forecast?.current.temp_c)
-  const currentAverageTemperature = Math.round(forecast?.current.feelslike_c)
+  const currentTemperature = Math.round(forecast?.current?.temp_c)
+  const currentAverageTemperature = Math.round(forecast?.current?.feelslike_c)
 
   return (
     <MainLayout title="Province Suggested Crops">
