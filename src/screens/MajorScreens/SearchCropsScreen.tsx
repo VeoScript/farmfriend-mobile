@@ -80,8 +80,9 @@ const SearchCropsScreen = () => {
           }
           <View style={tw`flex-1 flex-col ml-3`}>
             <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.name }</Text>
-            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.temperature }°C</Text></Text>
             <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
+            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.temperature }°C</Text></Text>
+            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Maximum Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.max_temperature }°C</Text></Text>
           </View>
         </TouchableOpacity>
       </View>

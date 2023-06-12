@@ -54,7 +54,8 @@ const ViewCropsScreen = () => {
                 cropPhoto: crop.image,
                 cropName: crop.name,
                 cropDescription: crop.description,
-                cropTemperature: crop.temperature
+                cropTemperature: crop.temperature,
+                cropMaxTemperature: crop.max_temperature,
               })}
             >
               <FeatherIcon size={18} name="edit" color="#333333" />
@@ -94,6 +95,10 @@ const ViewCropsScreen = () => {
           <View style={tw`flex-col items-center my-3`}>
             <Text style={tw`font-poppins-bold text-xl text-olive-dark`}>{ crop.temperature }°C</Text>
             <Text style={tw`font-poppins text-xs text-olive`}>Required Temperature</Text>
+          </View>
+          <View style={tw`flex-col items-center my-3`}>
+            <Text style={tw`font-poppins-bold text-xl text-olive-dark`}>{ crop.max_temperature }°C</Text>
+            <Text style={tw`font-poppins text-xs text-olive`}>Maximum Temperature</Text>
           </View>
           <View style={tw`flex-col items-center my-3`}>
             <Text style={tw`font-poppins text-sm text-olive-dark`}>{ crop.description }</Text>

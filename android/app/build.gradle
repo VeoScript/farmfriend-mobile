@@ -98,8 +98,8 @@ android {
         applicationId "com.farmfriend"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "v2.0"
+        versionCode 3
+        versionName "v3.0"
     }
 
     splits {

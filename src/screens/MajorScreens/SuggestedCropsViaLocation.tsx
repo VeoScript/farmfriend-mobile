@@ -39,10 +39,8 @@ const SuggestedCropsViaLocation = () => {
   if (!forecast || isLoading) return <LoadingScreen />
   if (error || isErrorSuggestedCrops) return <ErrorScreen error={error} />
 
-  const minimumRangeTemp = 3
-  const maximumRangeTemp = 3
-  const currentTemp = Math.round(forecast?.current.temp_c) - minimumRangeTemp
-  const currentAverageTemp = Math.round(forecast?.current.feelslike_c) + maximumRangeTemp
+  const currentTemperature = Math.round(forecast?.current.temp_c)
+  const currentAverageTemperature = Math.round(forecast?.current.feelslike_c)
 
   return (
     <MainLayout title="Province Suggested Crops">
@@ -125,9 +123,9 @@ const SuggestedCropsViaLocation = () => {
                       </View>
                     </View>
                   : <>
-                      {suggestedCrops.map((crop: { id: string, image: string, name: string, description: string, temperature: string }, i: number) => (
+                      {suggestedCrops.map((crop: { id: string, image: string, name: string, description: string, temperature: string, max_temperature: string }, i: number) => (
                         <React.Fragment key={i}>
-                          {(Number(crop.temperature) >= Math.min(currentTemp, currentAverageTemp) && Number(crop.temperature) <= Math.max(currentTemp, currentAverageTemp)) && (
+                          {(currentTemperature <= Number(crop.temperature) && Number(crop.temperature) <= currentAverageTemperature || currentTemperature <= Number(crop.max_temperature) && Number(crop.max_temperature) <= currentAverageTemperature) && (
                             <TouchableOpacity
                               activeOpacity={0.7}
                               style={tw`flex-row w-full p-3 overflow-hidden border-b border-olive border-opacity-40`}
@@ -145,6 +143,7 @@ const SuggestedCropsViaLocation = () => {
                               <View style={tw`flex-1 flex-col w-full ml-2 overflow-hidden`}>
                                 <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ crop.name }</Text>
                                 <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ crop.temperature }°C</Text></Text>
+                                <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Maximum Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ crop.max_temperature }°C</Text></Text>
                                 <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ crop.description }</Text>
                               </View>
                             </TouchableOpacity>

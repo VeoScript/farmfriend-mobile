@@ -187,21 +187,25 @@ export const createCropStore = create<type.CreateCropProps>(set => ({
   name: '',
   description: '',
   temperature: '',
+  max_temperature: '',
 
   photo_error: '',
   name_error: '',
   description_error: '',
   temperature_error: '',
+  max_temperature_error: '',
 
   setPhoto: (value: any) => set(() => ({ photo: value })),
   setName: (value: string) => set(() => ({ name: value })),
   setDescription: (value: string) => set(() => ({ description: value })),
   setTemperature: (value: string) => set(() => ({ temperature: value })),
+  setMaxTemperature: (value: string) => set(() => ({ max_temperature: value })),
 
   setPhotoError: (value: string) => set(() => ({ photo_error: value })),
   setNameError: (value: string) => set(() => ({ name_error: value })),
   setDescriptionError: (value: string) => set(() => ({ description_error: value })),
   setTemperatureError: (value: string) => set(() => ({ temperature_error: value })),
+  setMaxTemperatureError: (value: string) => set(() => ({ max_temperature_error: value })),
 
   setIsLoading: (value: boolean) => set(() => ({ isLoading: value })),
   setDefault: () => set(() => ({
