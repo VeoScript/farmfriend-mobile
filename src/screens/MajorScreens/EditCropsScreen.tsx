@@ -23,18 +23,22 @@ const EditCropsScreen = () => {
     name,
     description,
     temperature,
+    max_temperature,
 
     name_error,
     description_error,
     temperature_error,
+    max_temperature_error,
 
     setPhoto,
     setName,
     setDescription,
     setTemperature,
+    setMaxTemperature,
     setNameError,
     setDescriptionError,
     setTemperatureError,
+    setMaxTemperatureError,
 
     setIsLoading,
     setDefault
@@ -46,6 +50,7 @@ const EditCropsScreen = () => {
     setName(route.params?.cropName)
     setDescription(route.params?.cropDescription)
     setTemperature(route.params?.cropTemperature)
+    setMaxTemperature(route.params?.cropMaxTemperature)
   }, [route.params])
 
   const handleChoosePhoto = () => {
@@ -70,6 +75,7 @@ const EditCropsScreen = () => {
     if (name === '') return setNameError('Name is required')
     if (description === '') return setDescriptionError('Description is required')
     if (temperature === '') return setTemperatureError('Temperature is required')
+    if (max_temperature === '') return setMaxTemperatureError('Maximum Range Temperature is required')
 
     try {
       setIsLoading(true)
@@ -95,7 +101,8 @@ const EditCropsScreen = () => {
             photo: String(result.data.url),
             name,
             description,
-            temperature
+            temperature,
+            max_temperature
           },
           {
             onError: (error: any) => {
@@ -118,7 +125,8 @@ const EditCropsScreen = () => {
           photo: String(route.params?.cropPhoto),
           name,
           description,
-          temperature
+          temperature,
+          max_temperature
         },
         {
           onError: (error: any) => {
@@ -211,6 +219,20 @@ const EditCropsScreen = () => {
               }}
             />
             {temperature_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{temperature_error}</Text>)}
+          </View>
+          <View style={tw`flex-col w-full my-2`}>
+            <TextInput
+              editable={!isLoading}
+              keyboardType="numeric"
+              style={tw`font-poppins text-sm text-olive border-b border-olive`}
+              placeholder="Maximum Range Temperature"
+              value={max_temperature}
+              onChangeText={(value: string) => {
+                setMaxTemperature(value.replace(/\D/g, ''))
+                setMaxTemperatureError('')
+              }}
+            />
+            {max_temperature_error && (<Text style={tw`mt-1 font-poppins-light text-xs text-red-600`}>{max_temperature_error}</Text>)}
           </View>
           <TouchableOpacity
             disabled={isLoading}
