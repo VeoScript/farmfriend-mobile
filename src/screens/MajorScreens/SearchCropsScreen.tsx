@@ -2,7 +2,7 @@ import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
-import { View, Text, TextInput, ActivityIndicator, FlatList, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TextInput, ActivityIndicator, FlatList, RefreshControl, TouchableOpacity, Image } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { useGetCrops } from '../../helpers/tanstack/queries/crops'
@@ -18,6 +18,8 @@ const SearchCropsScreen = () => {
   const {
     data: crops,
     isLoading,
+    isFetching,
+    refetch,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage
@@ -81,8 +83,8 @@ const SearchCropsScreen = () => {
           <View style={tw`flex-1 flex-col ml-3`}>
             <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.name }</Text>
             <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
-            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.temperature }°C</Text></Text>
-            <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Maximum Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.max_temperature }°C</Text></Text>
+            <Text style={tw`font-poppins text-xs text-olive`}>Required Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.temperature }°C</Text></Text>
+            <Text style={tw`font-poppins text-xs text-olive`}>Maximum Temperature - <Text style={tw`font-poppins-bold text-sm`}>{ item.item.max_temperature }°C</Text></Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -109,6 +111,16 @@ const SearchCropsScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              refreshControl={
+                <RefreshControl
+                  colors={['#579F93']}
+                  tintColor={'#579F93'}
+                  refreshing={isFetching}
+                  onRefresh={() => {
+                    refetch
+                  }}
+                />
+              }
               keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={crops.pages.map((page: any) => page.crops).flat()}
