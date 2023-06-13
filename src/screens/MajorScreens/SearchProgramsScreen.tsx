@@ -69,7 +69,7 @@ const SearchProgramsScreen = () => {
         >
           <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.title }</Text>
           <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
-          <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Posted by { item.item.user.first_name + " " + item.item.user.last_name }</Text>
+          <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Posted by LGU - { item.item.user.address }</Text>
         </TouchableOpacity>
       </View>
     )
