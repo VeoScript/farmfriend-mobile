@@ -3,7 +3,7 @@ import MainLayout from '../../layouts/MainLayout'
 import moment from 'moment'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
-import { View, Text, TextInput, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, ActivityIndicator, FlatList, RefreshControl, TouchableOpacity } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { useGetPrograms } from '../../helpers/tanstack/queries/programs'
@@ -19,6 +19,8 @@ const SearchProgramsScreen = () => {
   const {
     data: programs,
     isLoading,
+    isFetching,
+    refetch,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage
@@ -66,8 +68,8 @@ const SearchProgramsScreen = () => {
           }}
         >
           <Text style={tw`my-0.5 font-poppins-bold text-sm text-olive-dark`}>{ item.item.title }</Text>
-          <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-sm text-olive`}>{ item.item.description }</Text>
-          <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>{ moment(item.item.created_at).format('LLL') }</Text>
+          <Text numberOfLines={1} style={tw`my-0.5 font-poppins text-xs text-olive`}>{ item.item.description }</Text>
+          <Text style={tw`my-0.5 font-poppins text-xs text-olive`}>Posted by { item.item.user.first_name + " " + item.item.user.last_name }</Text>
         </TouchableOpacity>
       </View>
     )
@@ -93,6 +95,16 @@ const SearchProgramsScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              refreshControl={
+                <RefreshControl
+                  colors={['#579F93']}
+                  tintColor={'#579F93'}
+                  refreshing={isFetching}
+                  onRefresh={() => {
+                    refetch
+                  }}
+                />
+              }
               keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={programs.pages.map((page: any) => page.programs).flat()}

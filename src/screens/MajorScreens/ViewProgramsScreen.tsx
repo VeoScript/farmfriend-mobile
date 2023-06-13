@@ -20,8 +20,9 @@ const ViewProgramsScreen = () => {
       <View style={tw`flex-1 flex-col items-center w-full p-3`}>
         <View style={tw`flex-col items-center w-full`}>
           <View style={tw`flex-col items-center my-3`}>
-            <Text style={tw`my-1 font-poppins-bold text-2xl text-olive-dark`}>{ program.title }</Text>
-            <Text style={tw`my-1 font-poppins text-xs text-olive`}>{ moment(program.created_at).format('LLL') }</Text>
+            <Text style={tw`my-1 font-poppins-bold text-2xl text-center text-olive-dark`}>{ program.title }</Text>
+            <Text style={tw`my-1 font-poppins text-xs text-center text-olive`}>Posted by { program.user.first_name + " " + program.user.last_name } of { program.user.address }</Text>
+            <Text style={tw`my-1 font-poppins text-xs text-center text-olive`}>{ moment(program.created_at).format('LLL') }</Text>
           </View>
           <View style={tw`flex-col items-center my-3`}>
             <Text style={tw`font-poppins text-sm text-olive-dark`}>{ program.description }</Text>

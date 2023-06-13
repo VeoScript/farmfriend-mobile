@@ -3,7 +3,7 @@ import MainLayout from '../../layouts/MainLayout'
 import UserDetailsModal from '../../components/Modals/UserDetailsModal'
 import tw from '../../styles/tailwind'
 import { FeatherIcon } from '../../utils/Icons'
-import { View, Text, TextInput, ActivityIndicator, FlatList, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TextInput, ActivityIndicator, FlatList, RefreshControl, TouchableOpacity, Image } from 'react-native'
 import { useNavigate } from '../../config/RootNavigation'
 import { useBackHandler } from '../../helpers/hooks/useBackHandler'
 import { useGetUsers } from '../../helpers/tanstack/queries/users'
@@ -25,6 +25,8 @@ const UserLguNgoScreen = () => {
   const {
     data: users,
     isLoading,
+    isFetching,
+    refetch,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage
@@ -117,6 +119,16 @@ const UserLguNgoScreen = () => {
               <Text style={tw`font-poppins text-base`}>Loading...</Text>
             </View>
           : <FlatList
+              refreshControl={
+                <RefreshControl
+                  colors={['#579F93']}
+                  tintColor={'#579F93'}
+                  refreshing={isFetching}
+                  onRefresh={() => {
+                    refetch
+                  }}
+                />
+              }
               keyboardShouldPersistTaps="handled"
               ListEmptyComponent={listIsEmpty}
               data={users.pages.map((page: any) => page.users).flat()}
