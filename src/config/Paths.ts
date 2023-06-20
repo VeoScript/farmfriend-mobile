@@ -18,6 +18,12 @@ export const links = [
     'route': 'SuggestedCropsViaLocation'
   },
   {
+    'access': ['FARMERS', 'LGU_NGO'],
+    'name': 'Future Suggested Crops',
+    'icon': 'activity',
+    'route': 'SuggestedCropsFutureScreen'
+  },
+  {
     'access': ['LGU_NGO'],
     'name': 'Add Programs',
     'icon': 'plus',
